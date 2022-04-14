@@ -1,0 +1,52 @@
+<h2>Profile page</h2>
+<p>UserId: {{userId}}</p>
+
+<form action="/profile" method="POST" id="profile-form">
+    <label for="firstName">First name</label>
+    <input id="firstName" type="text" name="firstName" placeholder="firstName" value="{{firstName}}" >
+
+    <label for="lastname">Last name</label>
+    <input id="lastName" type="text" name="lastName" placeholder="lastName" value="{{lastName}}" >
+ 
+    <br><br>
+
+    <label for="email">Email</label>
+    <input id="email" type="text" name="email" placeholder="email" value="{{email}}" >
+
+    <label for="age">Age</label>
+    <input id="age" type="text" name="age" placeholder="age" value="{{age}}" >
+
+    <br><br>
+
+    <label for="streetAddress">Street</label>
+    <input id="streetAddress" type="text" name="streetAddress" placeholder="street" value="{{streetAddress}}" >
+
+    <br><br>
+
+    <label for="city">City</label>
+    <input id="city" type="text" name="city" placeholder="city" value="{{city}}" >
+
+    <label for="state">State</label>
+    <input id="state" type="text" name="state" placeholder="state" value="{{state}}" >
+
+    <label for="zipcode">Zipcode</label>
+    <input id="zipcode" type="text" name="zipcode" placeholder="zipcode" value="{{zipcode}}" >
+
+    <br><br>
+
+    <label for="mobilePhone">Mobile Phone</label>
+    <input id="mobilePhone" type="text" name="mobilePhone" placeholder="mobilePhone" value="{{mobilePhone}}" >
+
+
+    <br><br>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+<br>
+<a href="./main"> Back to main</a>
+<br>
+<br>
+{{#if error1}}
+   <h3> {{error1}} </h3>
+{{/if}}
+
