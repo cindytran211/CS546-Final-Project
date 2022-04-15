@@ -47,3 +47,16 @@ Click Here to add a Pet
 Click Here to search for a Pet
 Click Here to select a Pet to Adopt
 Click Here to show Orders
+
+
+
+
+Screen Shots:
+
+![Login Page](./docs/images/PetAdoptionLogin.jpg)
+
+
+![Authenticated User Page](./docs/images/PetAdoptionAuthenticatedUser.jpg)
+
+
+
