@@ -5,7 +5,7 @@ Project for CS546
 Group 43
 
 # Group Members:
-Jamie Shamilian
-Caitlin Carbone
-Edward Kashulsky
-Cindy Tran
+- Jamie Shamilian
+- Caitlin Carbone
+- Edward Kashulsky
+- Cindy Tran
