@@ -32,21 +32,21 @@ Jamie Shamilian
 TODO:
 developer
 
-choose page to implement.
-create/update handlebars page
-create/update routes/PAGE.js
-create/update data/dbPAGE.js
+*choose page to implement.
+*create/update handlebars page
+*create/update routes/PAGE.js
+*create/update data/dbPAGE.js
 
 
 TODO pages found after login.....
 
 
-Click Here to edit Profile --- Done
-Click Here to add a Payment
-Click Here to add a Pet
-Click Here to search for a Pet
-Click Here to select a Pet to Adopt
-Click Here to show Orders
+*Click Here to edit Profile --- Done
+*Click Here to add a Payment
+*Click Here to add a Pet
+*Click Here to search for a Pet
+*Click Here to select a Pet to Adopt
+*Click Here to show Orders
 
 
 
