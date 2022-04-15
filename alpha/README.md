@@ -56,4 +56,7 @@ Screen Shots:
 ![Login Page](./docs/images/PetAdoptionLogin.jpg)
 
 
+![Authenticated User Page](./docs/images/PetAdoptionAuthenticatedUser.jpg)
+
+
 
