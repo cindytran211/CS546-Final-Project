@@ -65,3 +65,6 @@ Screen Shots:
 
 ![Authenticated User Profile Page](./docs/images/PetAdoptionProfile.jpg)
 
+![Authenticated Add Payment Page](./docs/images/PetAdoptionAddPayment.jpg)
+
+![Add Pet Page](./docs/images/PetAdoptionAddPet.jpg)
