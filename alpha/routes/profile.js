@@ -36,11 +36,6 @@ router.get('/',  async (req, res) => {
     logDebug(" return user info ");
     logDebug(rtn);
 
-    let update = { 
-        userId: user, 
-    
-        error1: errorMsg 
-    };
     res.status(200).render('../views/pages/profile', rtn );
    // res.status(200).render('../views/pages/profile', { userId: user, error1: errorMsg });
 

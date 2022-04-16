@@ -11,10 +11,10 @@
     <br><br>
 
     <label for="email">Email</label>
-    <input id="email" type="text" name="email" placeholder="email" value="{{email}}" >
+    <input id="email" type="email" name="email" placeholder="email" value="{{email}}" >
 
     <label for="age">Age</label>
-    <input id="age" type="text" name="age" placeholder="age" value="{{age}}" >
+    <input id="age" type="number" name="age" placeholder="age" value="{{age}}" >
 
     <br><br>
 
@@ -30,12 +30,12 @@
     <input id="state" type="text" name="state" placeholder="state" value="{{state}}" >
 
     <label for="zipcode">Zipcode</label>
-    <input id="zipcode" type="text" name="zipcode" placeholder="zipcode" value="{{zipcode}}" >
+    <input id="zipcode" type="zip" name="zipcode" placeholder="12345" pattern="[0-9]{5}"  value="{{zipcode}}" >
 
     <br><br>
 
     <label for="mobilePhone">Mobile Phone</label>
-    <input id="mobilePhone" type="text" name="mobilePhone" placeholder="mobilePhone" value="{{mobilePhone}}" >
+    <input id="mobilePhone" type="tel" name="mobilePhone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="{{mobilePhone}}" >
 
 
     <br><br>

@@ -184,7 +184,8 @@ async function getUser(userId) {
       firstName: 1,
       lastName: 1,
       email: 1  ,
-      mobilephone: 1  ,
+      age: 1,
+      mobilePhone: 1  ,
       streetAddress: 1  ,
       city: 1 ,
       state: 1  ,
@@ -220,7 +221,7 @@ async function getUser(userId) {
     firstName: userMatch.firstName  ,
     lastName:userMatch.lastName  ,
     email:userMatch.email  ,
-    mobilephone:userMatch.mobilephone  ,
+    mobilePhone:userMatch.mobilePhone  ,
     streetAddress:userMatch.streetAddress  ,
     city:userMatch.city  ,
     state:userMatch.state  ,
@@ -245,15 +246,6 @@ async function createUser(userId, passWord) {
   if (checkuserId(userId) == true) throw "Name in Use Already";
 
   let hashPass = await bcrypt.hash(passWord, salt);
-  /*
-  let newUser = {};
-  newUser.userId = userId;
-  newUser.password = hashPass;
-  newUser.clear = passWord;
-  newUser._id = "0";
-
-  usersArray.push(newUser);
-  */
 
   const newUserDb = {
     userId: userId,
