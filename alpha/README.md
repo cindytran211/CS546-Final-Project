@@ -44,9 +44,9 @@ TODO pages found after login.....
 
 
 
-- Click Here to edit Profile --- Done
-- Click Here to add a Payment
-- Click Here to add a Pet
+- Click Here to edit Profile --- initial handlebars / routes / data Done -- needs input checks
+- Click Here to add a Payment -- initial handlebars done....
+- Click Here to add a Pet  -- initial handlebars done....
 - Click Here to search for a Pet
 - Click Here to select a Pet to Adopt
 - Click Here to show Orders
