@@ -91,7 +91,10 @@ async function createUser(userId, passWord) {
 
   const newUserDb = {
     userId: userId,
-    password: hashPass
+    password: hashPass,
+    paymentArray: [],
+    orderArray: [],
+    favorites: []
   };
 
 
@@ -291,7 +294,7 @@ async function setUser( up ) {
   user.forEach((element) => {
     if (element.userId == userId) { 
       userMatch.userId = element.userId;
-      userMatch.password = element.password;
+      //userMatch.password = element.password;
       userMatch._id = element._id;
       found = true;
     }

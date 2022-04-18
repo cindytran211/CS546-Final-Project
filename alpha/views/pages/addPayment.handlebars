@@ -1,14 +1,21 @@
 <h2>Add Payment page</h2>
 
+ <p> Card Index {{idnum}}</p>
+
+
 <form action="/addPayment" method="POST" id="addPayment-form">
     <label for="cardName">Name on Card</label>
-    <input id="cardName" type="text" name="cardName" placeholder="John Public" >
+    <input id="cardName" type="text" name="cardName" placeholder="John Public" value="{{cardName}}" >
 
 <br><br>
 
     <label for="cardNumber">Card Number</label>
-    <input id="cardNumber" type="text" name="cardumber" placeholder="1234-5678-1234-5678" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" value="{{cardNumber}}" >
+    <input id="cardNumber" type="text" name="cardNumber" placeholder="1234-5678-1234-5678" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" value="{{cardNumber}}" >
 
+
+    <input id="_id" type="hidden" name="_id" value="{{_id}}"  >
+
+    <input id="idnum" type="hidden" name="idnum" value="{{idnum}}"  >
 
 <br><br>
 
@@ -40,10 +47,11 @@
 </form>
 
 <br>
-<a href="./nextPayment"> Next Payment</a>
+   
+<a href="/addPayment/{{inc idnum}}">Next a Payment</a>
 <br>
 <br>
-<a href="./main"> Back to main</a>
+<a href="/main"> Back to main</a>
 <br>
 <br>
 {{#if error1}}

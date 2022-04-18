@@ -21,8 +21,18 @@ app.use;
 app.use("/public", staticDir);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+
+
+
 app.engine("handlebars", exphbars());
 app.set("view engine", "handlebars");
+
+var hbs = require('handlebars');
+hbs.registerHelper("inc", function(value, options)
+{
+    return parseInt(value) + 1;
+});
 
 
 app.use(

@@ -75,7 +75,7 @@ router.post('/', async (req, res) => {
     let rtn = await users.setUser(set);
     // fetch info from db collection for users
 
-
+    res.redirect('/profile'); 
 });
 
 
