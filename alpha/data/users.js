@@ -11,21 +11,6 @@ const logDebug = function logDebug(str) {
   if (debug) console.error(str);
 };
 
-/*
-usersArray = [
-  {
-    _id: ObjectId("615f5211445eac188610ecbe"),
-    userId: "jamie1",
-    password: "$2a$10$Tt8wmadcxNwblkulGeN.F.uIejpN06giJpOIKjMo4yrSrcTiptvZ2",
-  },
-  {
-    _id: ObjectId("615f5211445eac188610ecc0"),
-    userId: "john1",
-    password: "$2a$10$IchLyxHbSa66ViQv9aFlfumweBu750wM5Y0IkAkLHSpAsrACCmv/W",
-  },
-];
-
-*/
 
 function logit(str) {
   console.log("[" + new Date().toUTCString() + "]: " + str);
@@ -47,22 +32,6 @@ async function checkuserId(userId) {
     if (element.userId == userId) found = true;
   });
 
-  /*
-
-  let userMatch = {};
-
-  // look for userId in usersArray
-  for (let i = 0; i < usersArray.length; i++) {
-    logDebug("check " + usersArray[i].userId);
-    if (usersArray[i].userId == userId) {
-      userMatch = usersArray[i];
-      logDebug("Match " + users[i].userId);
-      found = true;
-      break;
-    }
-  }
-*/
-
   return found;
 }
 
@@ -79,15 +48,6 @@ async function createUser(userId, passWord) {
   if (checkuserId(userId) == true) throw "Name in Use Already";
 
   let hashPass = await bcrypt.hash(passWord, salt);
-  /*
-  let newUser = {};
-  newUser.userId = userId;
-  newUser.password = hashPass;
-  newUser.clear = passWord;
-  newUser._id = "0";
-
-  usersArray.push(newUser);
-  */
 
   const newUserDb = {
     userId: userId,
@@ -114,25 +74,10 @@ async function checkUser(userId, passWord) {
   let found = false;
   userId = userId.toLowerCase();
 
-  logDebug("checkUser");
+  logDebug("checkUser "  + userId);
 
   if (userId.search(/^[a-z0-9]{4,}$/) < 0)
     throw "userId Illegal chars or Not long enough";
-
-  /*
-  // look for userId in usersArray
-  for (let i = 0; i < usersArray.length; i++) {
-    logDebug("check " + usersArray[i].userId);
-    if (usersArray[i].userId == userId) {
-      userMatch = usersArray[i];
-      logDebug("Match " + userMatch.userId);
-      found = true;
-      break;
-    }
-  }
-
-  */
-  //found = checkuserId(userId);
 
   const usersCollection = await usersCol();
   let user = await usersCollection.find({}, { projection: { _id: 1, userId: 1 , password: 1} }).toArray();

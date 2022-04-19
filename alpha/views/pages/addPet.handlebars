@@ -2,7 +2,7 @@
 
 <form action="/addPet" method="POST" id="addPet-form">
     <label for="petId">Pet Id</label>
-    <input id="petId" type="text" name="petId" placeholder="petId" >
+    <input id="petId" type="text" name="petId" placeholder="petId" readonly   value="{{petId}}"  >
 
 <br><br>
 
@@ -20,10 +20,6 @@
 	
 <br><br>
 
-
-	<!--label for="color">Pet Color</label n-->
-    <!--input id="color" type="color" name="color" placeholder="color" -->
-
     <label for="color">Pet color</label>
     <input  list="color" name="color" value="{{color}}"  >
 	<datalist id="color" >
@@ -31,6 +27,7 @@
         <option value="gray" ></option>
         <option value="red" ></option>
         <option value="golden" ></option>
+        <option value="brown" ></option>
 		<option value="white" >
 	</datalist>
 
@@ -65,7 +62,7 @@
 
 	<label for="status">Pet Status</label>
     <input  list="status" name="status" value="{{status}}" >
-	<datalist id="type" >
+	<datalist id="status" >
 		<option value="available" >
 		<option value="sold" >
 	</datalist>
