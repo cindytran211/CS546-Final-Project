@@ -74,6 +74,6 @@ Screen Shots:
 
 ![Search Pet](./docs/images/PetAdoptionSearchPet.jpg)
 
-![Search List](./docs/images/PetAdoptionSearchList.jpg)
+![Search List](./docs/images/PetAdoptionUpdateList.jpg)
 
 ![Admin Update](./docs/images/PetAdoptionUpdate.jpg)
