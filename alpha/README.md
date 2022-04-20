@@ -68,3 +68,12 @@ Screen Shots:
 ![Authenticated Add Payment Page](./docs/images/PetAdoptionAddPayment.jpg)
 
 ![Add Pet Page](./docs/images/PetAdoptionAddPet.jpg)
+
+
+![Admin Login Page](./docs/images/PetAdoptionAdminUser.jpg)
+
+![Search Pet](./docs/images/PetAdoptionSearchPet.jpg)
+
+![Search List](./docs/images/PetAdoptionSearchList.jpg)
+
+![Admin Update](./docs/images/PetAdoptionUpdate.jpg)

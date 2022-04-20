@@ -1,6 +1,6 @@
-<h2>Add Pet page</h2>
+<h2>Update Pet page</h2>
 
-<form action="/addPet" method="POST" id="addPet-form">
+<form action="/updatePet" method="POST" id="updatePet-form">
     <label for="petId">Pet Id</label>
     <input id="petId" type="text" name="petId" placeholder="petId" readonly   value="{{petId}}"  >
 
@@ -72,7 +72,7 @@
     <button type="submit">Submit</button>
 </form>
 <br>
-<a href="./main"> Back to main</a>
+<a href="main"> Back to main</a>
 <br>
 <br>
 {{#if error1}}
