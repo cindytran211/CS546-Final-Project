@@ -196,7 +196,7 @@ async function searchPets(up) {
   if ( up.age && up.age!="" )
     maxAge = parseInt(up.age);
   if ( up.price && up.price!="" )
-    maxPrice = parseInt(up.Price);
+    maxPrice = parseInt(up.price);
 
   
 
@@ -227,7 +227,7 @@ let proj = {
     let pet = await petsCollection.find( queryPet, { projection: proj  }).toArray();
     let rtnArray = [];
 
-
+    logDebug( " Check max age "+maxAge+" max price "+maxPrice);
     pet.forEach((element) => {  
       logDebug( " Check age "+element.age+" price "+element.price);
       let ePrice = Number.parseInt(element.price);
