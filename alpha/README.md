@@ -47,8 +47,9 @@ TODO pages found after login.....
 - Click Here to edit Profile --- initial handlebars / routes / data Done -- needs input checks, validation 
 - Click Here to add a Payment -- initial handlebars done / routes / data --- needs cleanup and validation....
 - Click Here to add a Pet  -- initial handlebars routes / data done.... needs update and delete functions 
-- Click Here to search for a Pet
-- Click Here to select a Pet to Adopt
+- Click Here to search for a Pet -- initial handlebars routes / data done
+	-if user is admin call updatePet -- initial handlebars routes / data done
+	-if user other call selectPet to order .....
 - Click Here to show Orders
 
 
