@@ -1,11 +1,68 @@
 <h2>signup page</h2>
 
-<form action="/signup" method="POST" id="signup-form">
-    <label for="userId">Username</label>
-    <input id="userId" type="text" name="userId" placeholder="userId" />
-    <label for="password">Password</label>
-    <input id="password" type="password" name="password" placeholder="password" />
+<form method="POST" id="signup-form">
+    <label>
+        First Name
+    <input type="text" id="firstname" name="firstname" placeholder="firstname" required>
+    </label>
+    <label>
+        Last Name
+    <input type="text" id="lastname" name="lastname" placeholder="lastname" required>
+    </label>
+    <br>
+    <br>
+    <label>
+        Email
+    <input type="email" id="email" name="email" placeholder="email" required>
+    </label>
+    <label>
+        Age
+    <input type="number" id="age" name="age" placeholder="age" required>
+    </label>
+    <br>
+    <br>
+    <label>
+        Street
+    <input type="text" id="street" name="street" placeholder="street" required>
+    </label>
+    <br>
+    <br>
+    <label>
+        City
+    <input type="text" id="city" name="city" placeholder="city" required>
+    </label>
+    <label>
+        State
+    <input type="text" id="state" name="state" placeholder="state" required>
+    </label>
+    <label>
+        Zipcode
+    <input type="number" id="zipcode" name="zipcode" pattern="[0-9]{5}" title="Zipcode needs to be a 5 digit number" placeholder="12345" required>
+    </label>
+    <br>
+    <br>
+    <label>
+        Mobile Phone
+    <input type="tel" id="phonenumber" name="phonenumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" title="Phone Number needs to be in format 123-456-7890" placeholder="123-456-7890" required>
+    </label>
+    <br>
+    <br>
+    <label>
+    UserName
+    <input type="text" id="userId" name="userId" placeholder="userId" required>
+    </label>
+    <br>
+    <br>
+    <label>
+        Password
+    <input type="password" id="password" name="password" placeholder="password" required>
+    </label>
+    <br>
+    <br>
+    <label>
     <button type="submit">Sign up</button>
+    </label>
+    <br>
 </form>
 <br>
 <a href="/"> Already have an account? Click here to log-in</a>
@@ -14,4 +71,3 @@
 {{#if error1}}
    <h3> {{error1}} </h3>
 {{/if}}
-
