@@ -1,24 +1,12 @@
-const loginRoutes = require('./login');
-const profileRoutes = require('./profile');
-const addPetRoutes = require('./addPet');
-const updatePetRoutes = require('./updatePet');
-const searchPetRoutes = require('./searchPet');
-const addPaymentRoutes = require('./addPayment');
+const allRoutes=require('./allRoutes');
 
+const constructorMethod=(app) => {
+    //code to set up the site. All urls get passed to petRoutes. 
+    //Extranoues urls would just get redirected to the homepage
+   app.use('/',allRoutes);
+   app.use('*', (req,res) => {
+       res.redirect('/');
+   });
+};
 
-const constructorMethod = (app) => {
-    app.use('/', loginRoutes);
-    app.use('/profile',profileRoutes);
-    app.use('/addPet',addPetRoutes);
-    app.use('/updatePet',updatePetRoutes);
-    app.use('/searchPet',searchPetRoutes);
-    app.use('/addPayment',addPaymentRoutes);
-	
-    app.use('*', (req, res) => {
-      res.redirect('/');
-      //res.sendStatus(404);
-    });
-	
-  };
-  
-  module.exports = constructorMethod;
+module.exports=constructorMethod;
