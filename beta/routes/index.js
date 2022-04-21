@@ -6,7 +6,7 @@ const searchPetRoutes = require('./searchPet');
 const selectaPetRoutes = require('./selectaPet');
 const selectOrderRoutes = require('./selectOrder');
 const addPaymentRoutes = require('./addPayment');
-
+const showOrdersRoutes = require('./showOrders');
 
 const constructorMethod = (app) => {
     app.use('/', loginRoutes);
@@ -17,7 +17,8 @@ const constructorMethod = (app) => {
     app.use('/selectOrder', selectOrderRoutes);
     app.use('/searchPet', searchPetRoutes);
     app.use('/addPayment', addPaymentRoutes);
-	
+    app.use('/showOrders', showOrdersRoutes);
+
     app.use('*', (req, res) => {
       res.redirect('/');
       //res.sendStatus(404);

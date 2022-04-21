@@ -114,7 +114,10 @@ router.get('/private', (req, res) => {
     const user = req.session.user;
     if ( user ) {
         logit( req.method + ' ' + req.originalUrl + ' (Authenticated User)')
-        res.status(200).render('../views/pages/auth', { userId: user });
+        if ( user == "admin")
+            res.status(200).render('../views/pages/authAdmin', { userId: user });
+        else
+            res.status(200).render('../views/pages/authUser', { userId: user });
     } else {
         logit( req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "Login failed try again";

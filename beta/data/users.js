@@ -274,10 +274,11 @@ async function orderUser(userId, transId) {
   let rtn = await getUser(userId);
   if ( Array.isArray( rtn.orderArray ) == false ) 
     rtn.orderArray = [];
-  rtn.orderArray.push(transId);
-
-  let rtn2 = await setUser(rtn);
-
+  if ( transId != 0 ) {
+    rtn.orderArray.push(transId);
+    let rtn2 = await setUser(rtn);
+  }
+  
   return ( rtn.orderArray );
 
 }
