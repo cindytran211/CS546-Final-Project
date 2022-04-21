@@ -1,7 +1,9 @@
 # CS546-Final-Project
 Project for CS546 
 
-Alpha - early source
+beta - functional source
+
+NEVER include node_modules or package-lock.json in src
 
 must run: 
 
