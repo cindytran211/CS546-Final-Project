@@ -3,6 +3,9 @@ Project for CS546
 
 Alpha - early source
 
+I am working on a new beta tree as changes made to this alpha tree 
+have broken my code and will not merge. Jamie Shamilian
+
 must run: 
 
 - npm install
