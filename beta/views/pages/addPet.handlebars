@@ -1,0 +1,81 @@
+<h2>Add Pet page</h2>
+
+<form action="/addPet" method="POST" id="addPet-form">
+    <label for="petId">Pet Id</label>
+    <input id="petId" type="text" name="petId" placeholder="petId" readonly   value="{{petId}}"  >
+
+<br><br>
+
+    <label for="name">Pet Name</label>
+    <input id="name" type="text" name="name" placeholder="name" value="{{name}}">
+	
+<br><br>
+
+	<label for="petType">Pet Type</label>
+    <input  list="petType" name="petType" value="{{petType}}"  >
+	<datalist id="petType" >
+		<option value="cat" >
+		<option value="dog" >
+	</datalist>
+	
+<br><br>
+
+    <label for="color">Pet color</label>
+    <input  list="color" name="color" value="{{color}}"  >
+	<datalist id="color" >
+		<option value="black" >
+        <option value="gray" ></option>
+        <option value="red" ></option>
+        <option value="golden" ></option>
+        <option value="brown" ></option>
+		<option value="white" >
+	</datalist>
+
+
+	
+<br><br>
+
+	<label for="breed">Pet Breed</label>
+    <input id="breed" type="text" name="breed" placeholder="breed" value="{{breed}}" >
+
+<br><br>
+
+    <label for="age">Pet Age in Years</label>
+    <input id="age" type="number" name="age" placeholder="age" value="{{age}}" >
+	
+<br><br>
+
+	<label for="description">Pet Description</label>
+    <input id="description" type="text" name="description" placeholder="description" value="{{description}}">
+	
+<br><br>
+
+    <label for="img">Pet Image File name </label>
+    <input id="img" type="text" name="img" placeholder="image file name jpeg" value="{{img}}" >
+	
+<br><br>
+
+	<label for="price">Pet Price</label>
+    <input id="price" type="number" name="price" placeholder="price" value="{{price}}" >
+	
+<br><br>
+
+	<label for="status">Pet Status</label>
+    <input  list="status" name="status" value="{{status}}" >
+	<datalist id="status" >
+		<option value="available" >
+		<option value="sold" >
+	</datalist>
+
+<br><br>	
+	
+    <button type="submit">Submit</button>
+</form>
+<br>
+<a href="./main"> Back to main</a>
+<br>
+<br>
+{{#if error1}}
+   <h3> {{error1}} </h3>
+{{/if}}
+
