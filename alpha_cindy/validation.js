@@ -53,7 +53,7 @@ module.exports=
      checkAge(age)
      {
          let stringage=age.toString();
-         let newstring=stringage.replaceAll("0","");
+         let newstring=stringage.replace(/0/g,"");
          if(newstring=="")
          {
              throw "Error: Age is not in the correct format"
