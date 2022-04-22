@@ -56,6 +56,7 @@ TODO pages found after login.....
 	-select orders to show -- initial handlebars routes / data done
 		- show order  -- initial handlebars routes / data done
 - Click Here to show Orders   -- initial handlebars routes / data done
+- Added encryption to credit card number 
 
 
 
@@ -91,3 +92,7 @@ Screen Shots:
 ![User Select Order ](./docs/images/PetAdoptionSelectOrderList.jpg)
 
 ![User Select show Order ](./docs/images/PetAdoptionShowOrder.jpg)
+
+![DB Collections ](./docs/images/PetAdoptionDB.jpg)
+
+![User Collections ](./docs/images/PetAdoption.users.jpg)

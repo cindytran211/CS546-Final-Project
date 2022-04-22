@@ -3,8 +3,29 @@ const mongoCollections = require("../config/mongoCollections");
 const usersCol = mongoCollections.users;
 
 const bcrypt = require("bcryptjs");
-
+const crypto = require("crypto");
+const algorithm = "aes-256-cbc"; 
 const salt = 16;
+
+const initVector0 = crypto.randomBytes(16);
+const Securitykey0 = crypto.randomBytes(32);
+
+let initVector1 = [136, 49, 184, 134, 153, 205, 192, 232, 241, 240, 152, 251, 224, 88, 63, 19];
+let Securitykey1 =  [139, 18, 7, 139, 33, 55, 108, 217, 222, 222, 116, 34, 115, 58, 29, 64, 66, 212, 101, 8, 254, 76, 75, 160, 18, 186, 136, 130, 27, 108, 164, 80];
+
+//let initVector1 = "932b1a538ae06eb08d4c4de80efcefc7";
+//let Securitykey1 = "0ad20893618bebed8ded01fde7549b8480fc2334a9d36274721a39a639cd67c6";
+
+let initVector = new Uint8Array( initVector1 ).buffer;
+let Securitykey = new Uint8Array( Securitykey1 ).buffer;
+
+console.log("The random data is: "+ initVector0.toString('hex'));
+console.log("The random data is: "+ Securitykey0.toString('hex'));
+console.log("The random data is: "+ initVector.toString('hex'));
+console.log("The random data is: "+ Securitykey.toString('hex'));
+
+
+
 
 const debug = true;
 const logDebug = function logDebug(str) {
@@ -27,9 +48,6 @@ async function getAll(userId) {
 
     userId = userId.trim();
 
-    //const userCollection = await usersCol();
-    //const user = await userCollection.findOne({_id: idObj});
-
     const usersCollection = await usersCol();
     const user = await usersCollection.findOne({userId: userId},  { projection: { _id: 0,  "paymentArray" : 1 } }   );
 
@@ -46,10 +64,42 @@ async function getAll(userId) {
         len = user.paymentArray.length;
 
     logDebug( " return payment array "+len);
+
+    //logDebug(initVector);
+    //logDebug(Securitykey);
+
     if ( len > 0 ) { 
-        user.paymentArray.forEach ( element => {
-            element._id = element._id.toString();
+
+       /* user.paymentArray.forEach ( element => {
+             element._id = element._id.toString();
+
+            logDebug(element.cardNumber);
+
+            let decryptedData = decipher.update(element.cardNumber, "hex", "utf-8");
+            decryptedData += decipher.final("utf8");
+            element.cardNumber = decryptedData;
+
+            logDebug("Dencrypt "+decryptedData);
+        
         });
+        */
+
+
+        for ( let i = 0; i < user.paymentArray.length ; i++ ) {
+            user.paymentArray[i]._id = user.paymentArray[i]._id.toString();
+            logDebug(user.paymentArray[i].cardNumber);
+            try {
+              const decipher = crypto.createDecipheriv(algorithm, Securitykey, initVector);
+              let decryptedData = decipher.update(user.paymentArray[i].cardNumber, "hex", "utf-8");
+              decryptedData += decipher.final("utf8");
+              user.paymentArray[i].cardNumber = decryptedData;
+            } catch (e)
+            {
+                user.paymentArray[i].cardNumber = "1111-1111-1111-1111";
+            }
+            logDebug("Dencrypt "+ user.paymentArray[i].cardNumber);
+        }
+        
         return user.paymentArray
     } else {
         return {};
@@ -89,11 +139,25 @@ async function setPayment(userId, up ) {
     let id = up._id;
 
     logDebug("Create / update "+ up._id );
+    let cardNumString = "";
+    let ty = typeof  up.cardNumber;
+
+    if ( ty == "string" )
+        cardNumString = up.cardNumber;
+    else
+        cardNumString = up.cardNumber.toString();
+    
+    const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
+    let encryptedData = cipher.update(cardNumString, "utf-8", "hex");
+    encryptedData += cipher.final("hex");
+
+    logDebug("Encrypt "+encryptedData);
 
     const newPayment = {
         _id: new ObjectId(),
         cardName: up.cardName,
-        cardNumber: up.cardNumber,
+        //cardNumber: up.cardNumber,
+        cardNumber: encryptedData,
         cardType : up.cardType,
         cardBank : up.cardBank,
         expDate : up.expDate,
@@ -102,7 +166,8 @@ async function setPayment(userId, up ) {
 
     const updatePayment = {
         cardName: up.cardName,
-        cardNumber: up.cardNumber,
+        //cardNumber: up.cardNumber,
+        cardNumber: encryptedData,
         cardType : up.cardType,
         cardBank : up.cardBank,
         expDate : up.expDate,
