@@ -1,6 +1,8 @@
+
 const express = require('express');
 const router = express.Router();
 const payments = require('../data/payments');
+const validation = require('../validation');
 
 const debug = true;
 const logDebug = function logDebug(str) {
@@ -34,14 +36,6 @@ router.get('/:id', async (req, res) => {
         return;
     }
 
-/*
-    if ( idnum > 2 )
-    {
-        errorMsg = "id num must be less than 3 was "+idnum ;
-        res.status(400).render('../views/pages/addPayment', { error1: errorMsg, idnum: 0 } );
-        return;
-    }
-*/
 
     let rtnArray = await payments.getAll(user);
     // fetch info from db collection for users payment array
@@ -73,7 +67,7 @@ router.get('/:id', async (req, res) => {
             pay = { error1: "new card " } 
     } 
          
-   // pay.error1 =  errorMsg;
+    pay.error1 =  errorMsg;
     pay.idnum = idnum;
     logDebug(" return user info ");
     logDebug(pay);
@@ -98,10 +92,29 @@ router.post('/', async (req, res) => {
 
     logDebug( " Got "+ idnum + " from bank "+cardBank  + " for card number  " + cardNumber );
 
-    let rtnArray = await payments.setPayment(user,rb);
+    try {
 
+        validation.checkBank(rb.cardBank);
+        validation.checkExpDate(rb.expDate);
+        validation.checkCardType(rb.cardType);
+
+        let rtnArray = await payments.setPayment(user,rb);
+    } catch ( e  )
+    {
+        logDebug(e); 
+        rb.error1 = e;
+        res.status(200).render('../views/pages/addPayment', rb );
+        return;
+    }
+
+    rb.error1 = "Payment update OK.=";
+    res.status(200).render('../views/pages/addPayment', rb );
+    return;
+/*
     let next = '/addPayment/'+idnum; 
-  //  res.redirect(next); 
+
+    res.redirect(next); 
+    */
 });
 
 

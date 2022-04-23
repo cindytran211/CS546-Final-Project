@@ -1,4 +1,5 @@
 var validatior=require('email-validator');
+
 module.exports=
 {
      checkUserName(username)
@@ -119,5 +120,52 @@ module.exports=
         {
             return phonenumber;
         }
-     }
+     },
+     checkString(str)
+     {
+         if(( str == null) || (str.trim()=="") )
+         {
+             throw "Error: String can not be empty"
+         }
+         else
+         {
+            return str;
+         }
+     },
+     checkBank(str)
+     {
+         if(( str == null) || (str.trim()=="") )
+         {
+             throw "Error: Bank can not be empty"
+         }
+         else
+         {
+            return str;
+         }
+     },
+     checkCardType(str)
+     {
+         if(( str == null) || (str.trim()=="") )
+         {
+             throw "Error: Card Type can not be empty"
+         }
+         else
+         {
+            return str;
+         }
+     },
+     checkExpDate(str)
+     {
+        if(( str == null) || (str.trim()=="") )
+        {
+            throw "Error: Date String can not be empty"
+        }
+        else
+        {
+            let re = /^(0[1-9]|1[0-2])\/([0-9]{2})$/;
+            const regex = new RegExp(re);
+            if ( regex.test(str) == false )
+                throw "Error: Date incorrect format"
+        }
+    }
 }
