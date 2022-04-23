@@ -5,7 +5,7 @@
 
 <form action="/addPayment" method="POST" id="addPayment-form">
     <label for="cardName">Name on Card</label>
-    <input id="cardName" type="text" name="cardName" placeholder="John Public" value="{{cardName}}" >
+    <input id="cardName" type="text" name="cardName" placeholder="John Public" pattern="[a-zA-Z0-9\s]+" value="{{cardName}}" >
 
 <br><br>
 
@@ -29,7 +29,7 @@
 <br><br>
 
 	<label for="cardBank">Creditcard Bank Name</label>
-    <input id="cardBank" type="text" name="cardBank" placeholder="Bank Name" value="{{cardBank}}">
+    <input id="cardBank" type="text" name="cardBank" placeholder="Bank Name" pattern="[a-zA-Z0-9\s]+" value="{{cardBank}}">
 
 <br><br>
 
@@ -39,7 +39,7 @@
 <br><br>
 
 	<label for="description">Payment Description</label>
-    <input id="description" type="text" name="description" placeholder="description" value="{{description}}">
+    <input id="description" type="text" name="description" placeholder="description" pattern="[a-zA-Z0-9\s]*" value="{{description}}">
 	
 <br><br>
 

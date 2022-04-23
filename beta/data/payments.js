@@ -1,5 +1,6 @@
 const { ObjectId } = require("mongodb");
 const mongoCollections = require("../config/mongoCollections");
+const validation = require('../validation');
 const usersCol = mongoCollections.users;
 
 const bcrypt = require("bcryptjs");
@@ -7,23 +8,22 @@ const crypto = require("crypto");
 const algorithm = "aes-256-cbc"; 
 const salt = 16;
 
-const initVector0 = crypto.randomBytes(16);
-const Securitykey0 = crypto.randomBytes(32);
+//const initVector0 = crypto.randomBytes(16);
+//const Securitykey0 = crypto.randomBytes(32);
 
 let initVector1 = [136, 49, 184, 134, 153, 205, 192, 232, 241, 240, 152, 251, 224, 88, 63, 19];
 let Securitykey1 =  [139, 18, 7, 139, 33, 55, 108, 217, 222, 222, 116, 34, 115, 58, 29, 64, 66, 212, 101, 8, 254, 76, 75, 160, 18, 186, 136, 130, 27, 108, 164, 80];
 
-//let initVector1 = "932b1a538ae06eb08d4c4de80efcefc7";
-//let Securitykey1 = "0ad20893618bebed8ded01fde7549b8480fc2334a9d36274721a39a639cd67c6";
 
 let initVector = new Uint8Array( initVector1 ).buffer;
 let Securitykey = new Uint8Array( Securitykey1 ).buffer;
 
+/*
 console.log("The random data is: "+ initVector0.toString('hex'));
 console.log("The random data is: "+ Securitykey0.toString('hex'));
 console.log("The random data is: "+ initVector.toString('hex'));
 console.log("The random data is: "+ Securitykey.toString('hex'));
-
+*/
 
 
 
@@ -65,25 +65,7 @@ async function getAll(userId) {
 
     logDebug( " return payment array "+len);
 
-    //logDebug(initVector);
-    //logDebug(Securitykey);
-
     if ( len > 0 ) { 
-
-       /* user.paymentArray.forEach ( element => {
-             element._id = element._id.toString();
-
-            logDebug(element.cardNumber);
-
-            let decryptedData = decipher.update(element.cardNumber, "hex", "utf-8");
-            decryptedData += decipher.final("utf8");
-            element.cardNumber = decryptedData;
-
-            logDebug("Dencrypt "+decryptedData);
-        
-        });
-        */
-
 
         for ( let i = 0; i < user.paymentArray.length ; i++ ) {
             user.paymentArray[i]._id = user.paymentArray[i]._id.toString();
@@ -130,9 +112,6 @@ async function getPayment(userId,index) {
 
 }
 
-
-
-
 async function setPayment(userId, up ) {
 
 
@@ -156,7 +135,6 @@ async function setPayment(userId, up ) {
     const newPayment = {
         _id: new ObjectId(),
         cardName: up.cardName,
-        //cardNumber: up.cardNumber,
         cardNumber: encryptedData,
         cardType : up.cardType,
         cardBank : up.cardBank,
@@ -166,7 +144,6 @@ async function setPayment(userId, up ) {
 
     const updatePayment = {
         cardName: up.cardName,
-        //cardNumber: up.cardNumber,
         cardNumber: encryptedData,
         cardType : up.cardType,
         cardBank : up.cardBank,
@@ -205,7 +182,6 @@ async function setPayment(userId, up ) {
             throw  ("Could not update users / payments successfully");
     }
 
-    //const rtn = await usersData.get(userId);
 	return;
 }
 	
