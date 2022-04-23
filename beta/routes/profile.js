@@ -1,7 +1,8 @@
 
 const express = require('express');
-//const { getUser } = require('../data/users');
 const users = require('../data/users');
+const validation = require('../validation');
+
 const router = express.Router();
 
 const debug = true;
@@ -66,6 +67,17 @@ router.post('/', async (req, res) => {
     let rtn = {};
   
     try {
+
+        up.firstName=validation.checkFirstName(up.firstName);
+        up.lastName=validation.checkLastName(up.lastName);
+        up.age=validation.checkAge(up.age);
+        up.streetAddress=validation.checkStreet(up.streetAddress);
+        up.city=validation.checkCity(up.city);
+        up.state=validation.checkState(up.state);
+        up.zipcode=validation.checkZipcode(up.zipcode);
+        up.mobilePhone=validation.checkPhoneNumber(up.mobilePhone);
+        up.email = validation.checkEmail(up.email);
+
         rtn = await users.setUser(set);
         // fetch info from db collection for users
         rtn = await users.getUser(user);
