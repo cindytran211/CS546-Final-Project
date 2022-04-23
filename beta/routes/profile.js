@@ -32,7 +32,7 @@ router.get('/',  async (req, res) => {
     let rtn = await users.getUser(user);
     // fetch info from db collection for users
 
-    rtn.errorMsg =  errorMsg;
+    rtn.error1 =  errorMsg;
     logDebug(" return user info ");
     logDebug(rtn);
 
@@ -44,20 +44,11 @@ router.get('/',  async (req, res) => {
 
 router.post('/', async (req, res) => {
     const user = req.session.user;
-
-    let firstname = req.body.firstName;
-    let lastname = req.body.lastName;
-
-
-    logDebug( " Got update "+ user + " "+ firstname + " " + lastname );
-
-    let set1 = {
-        userId : user,
-        firstName : firstname,
-        lastName : lastname 
-    }
-
     let up = req.body;
+    let errorMsg = "Profile page"
+
+    logDebug( " Got update "+ user + " "+ up.firstname + " " + up.lastname );
+
 
     let set =  { 
       userId : user,
@@ -72,10 +63,22 @@ router.post('/', async (req, res) => {
       age: up.age
     }
     
-    let rtn = await users.setUser(set);
-    // fetch info from db collection for users
+    let rtn = {};
+  
+    try {
+        rtn = await users.setUser(set);
+        // fetch info from db collection for users
+        rtn = await users.getUser(user);
+        rtn.error1 =  errorMsg;
 
-    res.redirect('/profile'); 
+    } catch (e) {
+        rtn = await users.getUser(user);
+        rtn.error1 = e;
+    }
+
+    res.status(200).render('../views/pages/profile', rtn );
+    return;
+    //res.redirect('/profile'); 
 });
 
 
