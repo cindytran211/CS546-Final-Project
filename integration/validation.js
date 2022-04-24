@@ -167,5 +167,106 @@ module.exports=
             if ( regex.test(str) == false )
                 throw "Error: Date incorrect format"
         }
-    }
+    },
+    checkCardNumber(str)
+    {    //[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}
+        if(( str == null) || (str.trim()=="") )
+        {
+            throw "Error: Card NUmkber can not be empty"
+        }
+        else
+        {
+            let re = /^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$/;
+            const regex = new RegExp(re);
+            if ( regex.test(str) == false )
+                throw "Error: card Number incorrect format"
+        }
+    },
+    /*
+        validation.checkPetName(rb.petName);
+        validation.checkColor(rb.color);
+        validation.checkPetType(rb.petType);
+        validation.checkAge(rb.age);
+        validation.checkBreed(rb.breed);
+        validation.checkPrice(rb.price);
+        validation.checkStatus(rb.status);
+
+    */
+        checkPetName(petname)
+        {
+            if(( petname == null) || (petname.trim()=="") )
+            {
+                throw "Error: Pet Name is not in the correct format"
+            }
+            else
+            {
+               return petname;
+            }
+        },
+        checkPetColor(petcolor)
+        {
+            if(( petcolor == null) || (petcolor.trim()=="") )
+            {
+                throw "Error: Pet Color is not in the correct format"
+            }
+            else
+            {
+               return petcolor;
+            }
+        },
+        checkPetType(pettype)
+        {
+            if(( pettype == null) || (pettype.trim()=="") )
+            {
+                throw "Error: Pet Type is not in the correct format"
+            }
+            else
+            {
+               return pettype;
+            }
+        },
+        checkPetAge(petage)
+        {
+            if(( petage == null) || (petage.trim()=="") )
+            {
+                throw "Error: Pet Age is not in the correct format"
+            }
+            else
+            {
+               return petage;
+            }
+        },
+        checkPetBreed(petbreed)
+        {
+            if(( petbreed == null) || (petbreed.trim()=="") )
+            {
+                throw "Error: Pet Breed is not in the correct format"
+            }
+            else
+            {
+               return petbreed;
+            }
+        },
+        checkPetPrice(petprice)
+        {
+            if(( petprice == null) || (petprice.trim()=="") )
+            {
+                throw "Error: Pet Price is not in the correct format"
+            }
+            else
+            {
+               return petprice;
+            }
+        },
+        checkPetStatus(petstatus)
+        {
+            if(( petstatus == null) || (petstatus.trim()=="") )
+            {
+                throw "Error: Pet Status is not in the correct format"
+            }
+            else
+            {
+               return petstatus;
+            }
+        },        
 }

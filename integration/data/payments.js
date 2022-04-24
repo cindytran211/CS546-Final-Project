@@ -125,7 +125,12 @@ async function setPayment(userId, up ) {
         cardNumString = up.cardNumber;
     else
         cardNumString = up.cardNumber.toString();
-    
+
+    validation.checkBank(up.cardBank);
+    validation.checkExpDate(up.expDate);
+    validation.checkCardType(up.cardType);
+    validation.checkCardNumber(up.cardNumber);
+
     const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
     let encryptedData = cipher.update(cardNumString, "utf-8", "hex");
     encryptedData += cipher.final("hex");

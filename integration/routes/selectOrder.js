@@ -40,7 +40,7 @@ router.get('/:id', async (req, res) => {
 
     let rtn = {};
     rtn.transId = transId;
-    rtn.userId = userId;
+    rtn.userId = rtn1.userId;
     rtn.petId = petId;
     rtn.error1 = errorMsg;
     rtn.petName = pet.petName;
