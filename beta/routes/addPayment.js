@@ -75,8 +75,6 @@ router.get('/:id', async (req, res) => {
     res.status(200).render('../views/pages/addPayment', pay );
     return;
 
-  //  res.status(200).render('../views/pages/addPayment', { error1: errorMsg });
-
 });
 
 router.post('/', async (req, res) => {
@@ -97,6 +95,7 @@ router.post('/', async (req, res) => {
         validation.checkBank(rb.cardBank);
         validation.checkExpDate(rb.expDate);
         validation.checkCardType(rb.cardType);
+        validation.checkCardNumber(rb.cardNumber);
 
         let rtnArray = await payments.setPayment(user,rb);
     } catch ( e  )
@@ -107,7 +106,7 @@ router.post('/', async (req, res) => {
         return;
     }
 
-    rb.error1 = "Payment update OK.=";
+    rb.error1 = "Payment update OK";
     res.status(200).render('../views/pages/addPayment', rb );
     return;
 /*

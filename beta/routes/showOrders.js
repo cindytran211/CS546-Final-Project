@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
     logDebug("user is set to "+req.session.user);
     let errorMsg = "Order Pet page"
-    if ( (req.session.user) && (req.session.user != "admin") ) { // user is authenticated
+    if ( (req.session.user) ) { // user is authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Authenticated User)')
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
@@ -29,8 +29,13 @@ router.get('/', async (req, res) => {
         res.status(200).render('../views/pages/login', { error1: errorMsg });
         return;
     }
-
-    let rtn3 = await users.orderUser(userId,0);
+    
+    let rtn3;
+    if (req.session.user != "admin") {
+        rtn3 = await users.orderUser(userId,0);
+    } else {
+        rtn3 = await orders.getOrderArray();
+    }
 
     let rtn4 = {};
     rtn4.orderArray = rtn3; 

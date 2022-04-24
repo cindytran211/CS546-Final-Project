@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pets = require('../data/pets');
+const validation = require('../validation');
 
 const debug = true;
 const logDebug = function logDebug(str) {
@@ -50,7 +51,27 @@ router.post('/', async (req, res) => {
     }
 
 
-    let rtn = await pets.addPet(petId,rb);
+    let rtn;
+    try {
+
+        validation.checkPetName(rb.petName);
+        validation.checkPetColor(rb.color);
+        validation.checkPetType(rb.petType);
+        validation.checkPetAge(rb.age);
+        validation.checkPetBreed(rb.breed);
+        validation.checkPetPrice(rb.price);
+        validation.checkPetStatus(rb.status);
+
+        rtn = await pets.addPet(petId,rb);
+
+    } catch ( e  )
+    {
+        logDebug(e); 
+        rb.error1 = e;
+        res.status(200).render('../views/pages/addPet', rb );
+        return;
+    }
+
 
     rtn.error1 = "New pet created";
     

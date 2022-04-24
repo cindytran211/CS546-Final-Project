@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pets = require('../data/pets');
+const validation = require('../validation');
 
 const debug = true;
 const logDebug = function logDebug(str) {
@@ -52,10 +53,29 @@ router.post('/', async (req, res) => {
         return;
     }
 
+    let rtn;
+    try {
 
-    let rtn = await pets.updatePet(petId,rb);
+        validation.checkPetName(rb.petName);
+        validation.checkPetColor(rb.color);
+        validation.checkPetType(rb.petType);
+        validation.checkPetAge(rb.age);
+        validation.checkPetBreed(rb.breed);
+        validation.checkPetPrice(rb.price);
+        validation.checkPetStatus(rb.status);
 
-    rtn.error1 = "Updated pet created";
+        rtn = await pets.updatePet(petId,rb);
+
+    } catch ( e  )
+    {
+        logDebug(e); 
+        rb.error1 = e;
+        res.status(200).render('../views/pages/updatePet', rb );
+        return;
+    }
+
+
+    rtn.error1 = "Updated pet done";
     
     logDebug(" pet created is true " + petId + " "+ rtn);
     res.status(200).render('../views/pages/updatePet', rtn);

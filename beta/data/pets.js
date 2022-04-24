@@ -39,6 +39,15 @@ async function addPet(petId,up) {
     petId = newPet.petId;
     const petCollection = await petsCol();
 
+    validation.checkPetName(up.petName);
+    validation.checkPetColor(up.color);
+    validation.checkPetType(up.petType);
+    validation.checkPetAge(up.age);
+    validation.checkPetBreed(up.breed);
+    validation.checkPetPrice(up.price);
+    validation.checkPetStatus(up.status);
+
+
     let insertInfo;
     try {
         insertInfo = await petCollection.insertOne(newPet);
@@ -80,6 +89,14 @@ async function updatePet(petId,up) {
   //newPet.petId = newPet._id.toString();
   //petId = newPet.petId;
   const petCollection = await petsCol();
+
+  validation.checkPetName(up.petName);
+  validation.checkPetColor(up.color);
+  validation.checkPetType(up.petType);
+  validation.checkPetAge(up.age);
+  validation.checkPetBreed(up.breed);
+  validation.checkPetPrice(up.price);
+  validation.checkPetStatus(up.status);
 
   let updateInfo;
   try {
