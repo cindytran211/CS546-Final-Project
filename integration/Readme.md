@@ -57,8 +57,8 @@ TODO pages found after login.....
 		- show order  -- initial handlebars routes / data done
 - Click Here to show Orders   -- initial handlebars routes / data done
 - Added encryption to credit card number 
-
-
+- added validations for all needed inputs
+- added orders view for admin
 
 
 
