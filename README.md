@@ -17,7 +17,7 @@ Group 43
 - from shell npm install
 - from shell npm start
 
-# running instructions
+# running instructions manual
 - Create user "admin" using the sign-up option
 - Create a normal user using the sign-up option
 - login as admin to "add pets"
@@ -30,3 +30,14 @@ Group 43
 - order pet
 - view your order
 
+
+# install/running fast-track instructions
+from shell npm install
+from shell npm run seed
+from shell npm start
+
+from browser 
+login as user admin password admin10
+or 
+login as user jamie10 password jamie10
+ 
