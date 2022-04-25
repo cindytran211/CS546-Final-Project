@@ -35,8 +35,8 @@ const constructorMethod = (app) => {
 
     app.use('*', (req, res) => {
       res.redirect('/login');
-      logDebug("Method "+req.method+" URL "+req.url);
-      res.redirect('/');
+      //logDebug("Method "+req.method+" URL "+req.url);
+      //res.redirect('/');
       //res.sendStatus(404);
     });
 	
