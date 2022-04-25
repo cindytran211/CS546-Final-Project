@@ -54,7 +54,7 @@ async function orderPet(userId,petId,pay,up) {
 async function updateOrder(up) {
 
   let id = up.transId;
-  let transId = up.tansId;
+  let transId = up.transId;
 
   logDebug("Update Order "+ id);
 
@@ -62,7 +62,7 @@ async function updateOrder(up) {
       _id: new ObjectId(transId),
       transId: transId,
       petId: up.petId,
-      userId: userId,
+      userId: up.userId,
       payment: up.payment,
       date : up.date,
       breed : up.breed,
@@ -137,21 +137,8 @@ if (found == false) {
 
 logDebug(orderMatch);
 
-let rtn = {
-  userId: orderMatch.userId,
-  petId: orderMatch.petId,
-  petName: orderMatch.petName  ,
-  petType:orderMatch.petType  ,
-  color:orderMatch.color  ,
-  breed:orderMatch.breed  ,
-  age:orderMatch.age  ,
-  description:orderMatch.description  ,
-  img:orderMatch.img  ,
-  price:orderMatch.price  ,
-  status:orderMatch.status
-  }
+return(orderMatch) ;
 
-return rtn ;
 }
 
 async function getOrderArray() {

@@ -59,6 +59,8 @@ TODO pages found after login.....
 - Added encryption to credit card number 
 - added validations for all needed inputs
 - added orders view for admin
+- admin can change status of order
+- seed.js can init the DB
 
 
 

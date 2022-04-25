@@ -8,7 +8,7 @@ const selectOrderRoutes = require('./selectOrder');
 const addPaymentRoutes = require('./addPayment');
 const showOrdersRoutes = require('./showOrders');
 
-const debug = true;
+const debug = false;
 const logDebug = function logDebug(str) {
   if (debug) console.error(str);
 };
