@@ -48,7 +48,40 @@ router.get('/:id', async (req, res) => {
 
     rtn.status = status;
 
-    res.status(200).render('../views/pages/showOrders', rtn);
+    if ( userId == "admin") {
+        res.status(200).render('../views/pages/updateOrders', rtn);
+    } else {
+        res.status(200).render('../views/pages/showOrders', rtn);
+    }
+
+
+});
+
+router.post('/', async (req, res) => {
+
+    logDebug ( " select order post");
+    let rb = req.body;
+
+    logDebug("user is set to "+req.session.user);
+    let errorMsg = "Update Order page"
+    if ( (req.session.user) && (req.session.user == "admin") ) { // user is authenticated
+        logit(req.method + ' ' + req.originalUrl + ' (Authenticated User)')
+    } else { // user is not authenticated
+        logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
+        errorMsg = "Please login as user admin ";
+        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        return;
+    }
+
+
+    let transId = rb.transId;
+
+    let rtn1 = await orders.getOrder(transId);
+
+    rtn1.status = rb.status;
+    let rtn2 = await orders.updateOrder(rtn1);
+
+    res.status(200).render('../views/pages/updateOrders', rtn2);
 
 
 });

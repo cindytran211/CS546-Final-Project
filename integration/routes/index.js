@@ -12,6 +12,12 @@ const authRoutes=require('./authUser');
 const deleteRoutes=require('./delete');
 const logoutRoutes=require('./logout');
 
+const debug = false;
+const logDebug = function logDebug(str) {
+  if (debug) console.error(str);
+};
+
+
 const constructorMethod = (app) => {
     app.use('/login', loginRoutes);
     app.use('/signup',signUpRoutes);
@@ -29,6 +35,8 @@ const constructorMethod = (app) => {
 
     app.use('*', (req, res) => {
       res.redirect('/login');
+      logDebug("Method "+req.method+" URL "+req.url);
+      res.redirect('/');
       //res.sendStatus(404);
     });
 	

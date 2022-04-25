@@ -8,6 +8,12 @@ const selectOrderRoutes = require('./selectOrder');
 const addPaymentRoutes = require('./addPayment');
 const showOrdersRoutes = require('./showOrders');
 
+const debug = false;
+const logDebug = function logDebug(str) {
+  if (debug) console.error(str);
+};
+
+
 const constructorMethod = (app) => {
     app.use('/', loginRoutes);
     app.use('/profile', profileRoutes);
@@ -20,6 +26,7 @@ const constructorMethod = (app) => {
     app.use('/showOrders', showOrdersRoutes);
 
     app.use('*', (req, res) => {
+      logDebug("Method "+req.method+" URL "+req.url);
       res.redirect('/');
       //res.sendStatus(404);
     });
