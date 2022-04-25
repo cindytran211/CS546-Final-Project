@@ -14,30 +14,27 @@ Group 43
 - download src from github
 - choose version you want to user example alpha, beta, integration
 - make sure mongo is installed and running
+
+# instructions for beta only ( jamie's code ) 
 - from shell npm install
+- from shell npm run seed ( creates users admin, jamie10, fills profile, fills payments ... )   
 - from shell npm start
 
 # running instructions manual
-- Create user "admin" using the sign-up option
-- Create a normal user using the sign-up option
-- login as admin to "add pets"
-- log-out
-- login as normal user 
+- Create a normal user using the sign-up option at login screen
+- login as normal user ( example jamie10 password jamie10 )
 - fill out your profile
 - add payment methods
-- search for pets
-- select pet 
-- order pet
-- view your order
+- search for pets to purchase
+- select pet to purchase
+- order pet with payment button
+- view your order 
+
+# admin instructions
+- login as admin password admin10
+- add Pet to create and new pet entry (file images must be copied to public/images seperately)
+- search for pet to update info
+- show ( and change status of ) orders for all users
 
 
-# install/running fast-track instructions
-from shell npm install
-from shell npm run seed
-from shell npm start
-
-from browser 
-login as user admin password admin10
-or 
-login as user jamie10 password jamie10
  
