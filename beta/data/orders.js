@@ -65,7 +65,6 @@ async function updateOrder(up) {
       userId: up.userId,
       payment: up.payment,
       date : up.date,
-      breed : up.breed,
       status: up.status
   };
 
