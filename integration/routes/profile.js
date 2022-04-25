@@ -1,98 +1,46 @@
+const express=require('express');
+const router=express.Router();
+const data=require('../data');
+const validation=require('../validation');
+const theusers=data.users;
 
-const express = require('express');
-const users = require('../data/users');
-const validation = require('../validation');
-
-const router = express.Router();
-
-const debug = true;
-const logDebug = function logDebug(str) {
-  if (debug) console.error(str);
-};
-
-function logit( str )
+router.get('',async(req,res) =>
 {
-    console.log('[' + new Date().toUTCString() + ']: ' + str );
-}
-
-
-router.get('/',  async (req, res) => {
-    logDebug("user is set to "+req.session.user);
-    const user = req.session.user;
-    let errorMsg = "Profile page"
-    if (req.session.user) { // user is authenticated
-        logit(req.method + ' ' + req.originalUrl + ' (Authenticated User)')
-       // res.redirect('/private'); 
-    } else { // user is not authenticated
-        logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
-        errorMsg = "Please login ";
-        //res.status(200).render('../views/pages/login', { error1: errorMsg });
-       // return;
-    }
-    
-    let rtn = await users.getUser(user);
-    // fetch info from db collection for users
-
-    rtn.error1 =  errorMsg;
-    logDebug(" return user info ");
-    logDebug(rtn);
-
-    res.status(200).render('../views/pages/profile', rtn );
-   // res.status(200).render('../views/pages/profile', { userId: user, error1: errorMsg });
-
+    const findUser=await theusers.findUser(req.session.userId);
+    res.render('pages/profile',{firstName: findUser[0].firstname,lastName: findUser[0].lastname,email: findUser[0].email, 
+        age: findUser[0].age, streetAddress: findUser[0].street, city: findUser[0].city, state: findUser[0].state, zipcode: findUser[0].zipcode, 
+        mobilePhone: findUser[0].mobilephone,userId: req.session.userId,password: req.session.password});
 });
 
-
-router.post('/', async (req, res) => {
-    const user = req.session.user;
-    let up = req.body;
-    let errorMsg = "Profile page"
-
-    logDebug( " Got update "+ user + " "+ up.firstname + " " + up.lastname );
-
-
-    let set =  { 
-      userId : user,
-      firstName: up.firstName,
-      lastName : up.lastName,
-      email : up.email,
-      mobilePhone : up.mobilePhone,
-      streetAddress : up.streetAddress,
-      city: up.city,
-      state: up.state,
-      zipcode: up.zipcode,
-      age: up.age
+router.post('',async(req,res)=>
+{
+    try{
+        req.body.firstName=validation.checkFirstName(req.body.firstName);
+        req.body.lastName=validation.checkLastName(req.body.lastName);
+        req.body.streetAddress=validation.checkStreet(req.body.streetAddress);
+        req.body.city=validation.checkCity(req.body.city);
+        req.body.state=validation.checkState(req.body.state);
+        req.body.zipcode=validation.checkZipcode(req.body.zipcode);
+        req.body.mobilePhone=validation.checkPhoneNumber(req.body.mobilePhone);
+        req.body.age=validation.checkAge(req.body.age);
+        req.body.email=validation.checkEmail(req.body.email);
+        req.body.userId=validation.checkUserName(req.body.userId);
+        var password=req.body.password;
+        password=validation.checkPassWord(password);
+        const newUser=await theusers.updateUser(req.body.firstName,req.body.lastName,req.body.email,req.body.age,req.body.streetAddress,req.body.city,req.body.state,req.body.zipcode,req.body.mobilePhone,req.body.userId,req.body.password);
+        if(!newUser)
+        {
+            res.status(500).send("Internal Server Error");
+        }
+        else
+        {
+            res.redirect('/auth');
+        }
     }
-    
-    let rtn = {};
-  
-    try {
-
-        up.firstName=validation.checkFirstName(up.firstName);
-        up.lastName=validation.checkLastName(up.lastName);
-        up.age=validation.checkAge(up.age);
-        up.streetAddress=validation.checkStreet(up.streetAddress);
-        up.city=validation.checkCity(up.city);
-        up.state=validation.checkState(up.state);
-        up.zipcode=validation.checkZipcode(up.zipcode);
-        up.mobilePhone=validation.checkPhoneNumber(up.mobilePhone);
-        up.email = validation.checkEmail(up.email);
-
-        rtn = await users.setUser(set);
-        // fetch info from db collection for users
-        rtn = await users.getUser(user);
-        rtn.error1 =  errorMsg;
-
-    } catch (e) {
-        rtn = await users.getUser(user);
-        rtn.error1 = e;
+    catch(e)
+    {
+        res.status(400).render('pages/profile',{error1:e});
     }
-
-    res.status(200).render('../views/pages/profile', rtn );
-    return;
-    //res.redirect('/profile'); 
 });
 
-
-
-module.exports = router;
+module.exports=router;

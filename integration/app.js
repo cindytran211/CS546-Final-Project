@@ -5,30 +5,35 @@ const staticDir = express.static(__dirname + "/public");
 const session = require("express-session");
 const configRoutes = require("./routes");
 
+/*
 const debug = false;
 const logDebug = function logDebug(str) {
   if (debug) console.error(str);
 };
+*/
 
+/*
 function logit( str ) {
     console.log('[' + new Date().toUTCString() + ']: ' + str );
 }
+*/
 
-app.use;
+//app.use;
 app.use("/public", staticDir);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 
-app.engine("handlebars", exphbars());
+app.engine('handlebars',exphbars({defaultLayout:'main'}));
 app.set("view engine", "handlebars");
 
+/*
 var hbs = require('handlebars');
 hbs.registerHelper("inc", function(value, options)
 {
     return parseInt(value) + 1;
 });
-
+*/
 
 app.use(
   session({
@@ -39,6 +44,7 @@ app.use(
   })
 );
 
+/*
 let totalRequests = 0;
 app.use(async ( req, res, next)=> {
   totalRequests++;
@@ -88,6 +94,25 @@ app.use("/login", (req, res, next) => {
     // req.method = 'POST';
     next();
   }
+});
+*/
+
+app.use('/auth', async(req,res,next) => 
+{
+    if(req.session.views!=1)
+    {
+        return res.status(403).render('pages/error',{title:"Not logged in"});
+    }
+    next();
+});
+
+app.use('/profile', async(req,res,next) => 
+{
+    if(req.session.views!=1)
+    {
+        return res.status(403).render('pages/error',{title:"Not logged in"});
+    }
+    next();
 });
 
 configRoutes(app);

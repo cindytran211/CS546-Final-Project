@@ -7,9 +7,17 @@ const selectaPetRoutes = require('./selectaPet');
 const selectOrderRoutes = require('./selectOrder');
 const addPaymentRoutes = require('./addPayment');
 const showOrdersRoutes = require('./showOrders');
+const signUpRoutes=require('./signup');
+const authRoutes=require('./authUser');
+const deleteRoutes=require('./delete');
+const logoutRoutes=require('./logout');
 
 const constructorMethod = (app) => {
-    app.use('/', loginRoutes);
+    app.use('/login', loginRoutes);
+    app.use('/signup',signUpRoutes);
+    app.use('/auth',authRoutes);
+    app.use('/delete',deleteRoutes);
+    app.use('/logout',logoutRoutes);
     app.use('/profile', profileRoutes);
     app.use('/addPet', addPetRoutes);
     app.use('/updatePet', updatePetRoutes);
@@ -20,7 +28,7 @@ const constructorMethod = (app) => {
     app.use('/showOrders', showOrdersRoutes);
 
     app.use('*', (req, res) => {
-      res.redirect('/');
+      res.redirect('/login');
       //res.sendStatus(404);
     });
 	
