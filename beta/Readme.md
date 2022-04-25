@@ -1,14 +1,7 @@
 # CS546-Final-Project
 Project for CS546 
 
-beta - functional source
-
-NEVER include node_modules or package-lock.json in src
-
-must run: 
-
-- npm install
-- npm start
+beta - complete functional source
 
 # Group Name: 
 Group 43
@@ -18,6 +11,32 @@ Group 43
 - Caitlin Carbone
 - Edward Kashulsky
 - Cindy Tran
+
+# installation instructions
+- download src from github
+- choose version you want to user example alpha, beta, integration
+- make sure mongo is installed and running
+
+# instructions for beta only
+- from shell npm install
+- from shell npm run seed ( creates users admin, jamie10, fills profile, fills payments ... )   
+- from shell npm start
+
+# running instructions manual
+- Create a normal user using the sign-up option at login screen
+- login as normal user ( example jamie10 password jamie10 )
+- fill out your profile
+- add payment methods
+- search for pets to purchase
+- select pet to purchase
+- order pet with payment button
+- view your order 
+
+# admin instructions
+- login as admin password admin10
+- add Pet to create and new pet entry (file images must be copied to public/images seperately)
+- search for pet to update info
+- show ( and change status of ) orders for all users
 
 
 # Developers Log
@@ -30,25 +49,24 @@ Jamie Shamilian
 - added profile page via profile.handlebars
 - added routes/profile.js to supprot prrofile page
 - added data/users.js to support login/profile pages
+- added data/payments.js to support credit card transactions
+- added data/pets.js to support searching lists of pets
+- added data/orders.js to support orders to purchase pets
 
 TODO:
 developer
 
-
 - choose page to implement.
-- create/update handlebars page
+- create/update views/pages/handlebars page
 - create/update routes/PAGE.js
 - create/update data/dbPAGE.js
 
 
-
 TODO pages found after login.....
-
-
 
 - Click Here to edit Profile --- initial handlebars / routes / data Done -- needs input checks, validation 
 - Click Here to add a Payment -- initial handlebars done / routes / data --- needs cleanup and validation....
-- Click Here to add a Pet  -- initial handlebars routes / data done.... needs update and delete functions 
+- Click Here to add a Pet - admin only  -- initial handlebars routes / data done.... needs update and delete functions 
 - Click Here to search for a Pet -- initial handlebars routes / data done
 	-if user is admin call updatePet -- initial handlebars routes / data done
 	-if user other call selectPet to order  -- initial handlebars routes / data done
