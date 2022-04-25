@@ -5,7 +5,7 @@ const validation=require('../validation');
 const theusers=data.users;
 
 router.get('', async(req,res) =>{
-    res.render('pages/authUser',{userId: req.session.userId});
+    res.render('pages/authUser',{userId: req.session.user});
 });
 
 module.exports=router;

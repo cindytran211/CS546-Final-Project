@@ -9,7 +9,7 @@ router.get('',async(req,res) =>
     const findUser=await theusers.findUser(req.session.userId);
     res.render('pages/profile',{firstName: findUser[0].firstname,lastName: findUser[0].lastname,email: findUser[0].email, 
         age: findUser[0].age, streetAddress: findUser[0].street, city: findUser[0].city, state: findUser[0].state, zipcode: findUser[0].zipcode, 
-        mobilePhone: findUser[0].mobilephone,userId: req.session.userId,password: req.session.password});
+        mobilePhone: findUser[0].mobilephone,userId: req.session.user,password: req.session.password});
 });
 
 router.post('',async(req,res)=>

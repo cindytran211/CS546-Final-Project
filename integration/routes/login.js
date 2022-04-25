@@ -35,7 +35,7 @@ router.post('',async(req,res) =>
         else
         {
             req.session.views=1;
-            req.session.userId=req.body.userId;
+            req.session.user=req.body.userId;
             req.session.password=req.body.password;
             //res.render('pages/auth',{userId: req.session.store});
             return res.redirect('/auth');
