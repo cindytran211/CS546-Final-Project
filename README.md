@@ -15,7 +15,7 @@ Group 43
 - choose version you want to user example alpha, beta, integration
 - make sure mongo is installed and running
 
-# instructions for beta only ( jamie's code ) 
+# instructions for beta only
 - from shell npm install
 - from shell npm run seed ( creates users admin, jamie10, fills profile, fills payments ... )   
 - from shell npm start
