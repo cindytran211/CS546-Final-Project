@@ -16,9 +16,8 @@ function logit(str) {
 
 async function addPet(petId,up) {
 
-    let id = up._id;
 
-    logDebug("Create pet "+ up._id );
+    logDebug("Create new pet " );
 
     const newPet = {
         _id: new ObjectId(),
