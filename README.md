@@ -11,10 +11,11 @@ Group 43
 - Cindy Tran
 
 # versions
-- **beta version is the only complete version** that has been tested, this should be the submitted version
+- **beta version is the only complete version** that has been tested
+- **release version** currently a copy of beta, tested and complete
 - alpha_jamie is an incomplete version that has been tested
 - alpha_cindy this is the alpha_jamie plus modification from cindy, broke many functions, no new functionality added
-- integration version this is the beta version plust modification from team members, broke most functionality, no new functionality added
+- integration version this is the beta version plust modification from team members, broke functionality, no new functionality added
 
 # installation instructions
 - download src from github
