@@ -1,7 +1,7 @@
 # CS546-Final-Project
 Project for CS546 
 
-beta - complete functional source
+release - complete functional source
 
 # Group Name: 
 Group 43
@@ -14,7 +14,7 @@ Group 43
 
 # installation instructions
 - download src from github
-- choose version you want to user example alpha, beta, integration
+- choose version you want to user example release
 - make sure mongo is installed and running
 
 # instructions for beta only
