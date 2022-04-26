@@ -84,6 +84,8 @@ TODO pages found after login.....
 
 Screen Shots:
 
+![npm install seed start](./docs/images/npmInstallSeedStart.jpg)
+
 ![Login Page](./docs/images/PetAdoptionLogin.jpg)
 
 
