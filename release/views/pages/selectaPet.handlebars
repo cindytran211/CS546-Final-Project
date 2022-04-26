@@ -80,13 +80,16 @@
 
 <br><br>	
 
-
+{{#if available }}
     {{#each pay}}
     <br>
      <button type="Order{{@index}}" name="card" value="{{@index}}" >Order with Payment card  {{@index}} from bank  {{this}}</button>
     <br>
     {{/each}}
 
+{{ else }}
+  <h3> Not Available </h3>
+{{/if }}
 
 </form>
 <br>

@@ -36,6 +36,9 @@ router.get('/:id', async (req, res) => {
 
     let rtn = await pets.getPet(petId);
 
+    if ( rtn.status == "available" )
+        rtn.available = "available";
+
     logDebug (" select a pet getting payments for "+ userId);
 
     let rtnPay = await payments.getAll(userId);
@@ -73,6 +76,13 @@ router.post('/', async (req, res) => {
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "Please login as user  ";
         res.status(200).render('../views/pages/login', { error1: errorMsg });
+        return;
+    }
+
+    let rtn0 = await users.getUser(userId);
+    if ( ( rtn0.email == null ) || (rtn0.email.trim == "")) {
+        let errorMsg = "Update your profile";
+        res.status(200).render('../views/pages/authUser', { error1: errorMsg });
         return;
     }
 
