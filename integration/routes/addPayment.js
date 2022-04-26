@@ -4,6 +4,7 @@ const router = express.Router();
 const payments = require('../data/payments');
 const validation = require('../validation');
 
+/*
 const debug = true;
 const logDebug = function logDebug(str) {
   if (debug) console.error(str);
@@ -114,7 +115,7 @@ router.post('/', async (req, res) => {
 
     res.redirect(next); 
     */
-});
+//});
 
 
 

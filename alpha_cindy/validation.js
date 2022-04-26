@@ -117,5 +117,60 @@ module.exports=
         {
             return phonenumber;
         }
+     },
+     checkCardName(name)
+     {
+        if(name.trim()=="")
+        {
+            throw "Error: Card Name is not in the correct format"
+        }
+        else
+        {
+            return name;
+        }
+     },
+     checkCardNumber(cardnumber)
+     {
+        if(cardnumber.trim()=="")
+        {
+            throw "Error: Card Number is not in the correct format"
+        }
+        else
+        {
+            return cardnumber;
+        }
+     },
+     checkBankName(bankname)
+     {
+        if(bankname.trim()=="")
+        {
+            throw "Error: Bank Name is not in the correct format"
+        }
+        else
+        {
+            return bankname;
+        }
+     },
+     checkExpirationDate(date)
+     {
+        if(date.trim()=="")
+        {
+            throw "Error: Expiration Date is not in the correct format"
+        }
+        else
+        {
+            return date;
+        }
+     },
+     checkDescription(des)
+     {
+        if(des.trim()=="")
+        {
+            throw "Error: Description is not in the correct format"
+        }
+        else
+        {
+            return des;
+        }
      }
 }

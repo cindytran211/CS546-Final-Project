@@ -39,6 +39,7 @@ let exportedMethos=
                 state: state,
                 zipcode: zipcode,
                 mobilephone: phonenumber,
+                payments: [],
             }
             const newUser=await usersCollection.insertOne(holder);
             if(!newUser.acknowledged || !newUser.insertedId)
@@ -113,6 +114,7 @@ let exportedMethos=
     {
         const saltRounds=16;
         const hash=await bcrypt.hash(password,saltRounds);
+        const oldUser=await this.findUser(username);
         const newUserInfo=
         {
             username: username,
@@ -126,8 +128,8 @@ let exportedMethos=
             state: state,
             zipcode: zipcode,
             mobilephone: phonenumber,
+            payments: oldUser[0].payments,
         }
-        const oldUser=await this.findUser(username);
         const userCollection=await users();
         const updateInfo=await userCollection.updateOne(
             {_id:oldUser[0]._id},{$set:newUserInfo}

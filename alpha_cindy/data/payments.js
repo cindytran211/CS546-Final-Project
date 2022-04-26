@@ -1,11 +1,64 @@
 const { ObjectId } = require("mongodb");
 const mongoCollections = require("../config/mongoCollections");
-const usersCol = mongoCollections.users;
+const users = mongoCollections.users;
+const Cryptr=require('cryptr');
+const validation = require('../validation');
 
-const bcrypt = require("bcryptjs");
+let exportedMethods=
+{
+    async addPayment(userId,cardName,cardNumber,cardType,cardBank,expDate,description)
+    {
+        userId=validation.checkUserName(userId);
+        const usersCollection=await users();
+        const findUser=await usersCollection.find({username: userId}).toArray();
+        if(findUser.length==0)
+        {
+            throw "Error: Could not find user"
+        }
+        else
+        {
+            const cryptr=new Cryptr('myTotallySecretKey');
+            const encrypt=cryptr.encrypt(cardNumber);
+            const payment=
+            {
+                _id:ObjectId(),
+                cardName: cardName,
+                cardNumber: encrypt,
+                cardType: cardType,
+                cardBank: cardBank,
+                expDate: expDate,
+                description: description,
+            }
+            //payments.push(payment);
+            const newpayments=findUser[0].payments;
+            newpayments.push(payment);
+            const newUserInfo=
+            {
+                username: findUser[0].username,
+                password: findUser[0].password,
+                firstname: findUser[0].firstname,
+                lastname: findUser[0].lastname,
+                email: findUser[0].email,
+                age: findUser[0].age,
+                street: findUser[0].street,
+                city: findUser[0].city,
+                state: findUser[0].state,
+                zipcode: findUser[0].zipcode,
+                mobilephone: findUser[0].mobilephone,
+                payments: newpayments,
+            }
+            const userCollection=await users();
+            const updateInfo=await userCollection.updateOne(
+                {_id:findUser[0]._id},{$set:newUserInfo}
+            );
+            return newUserInfo;
+        }
+    }
+}
 
-const salt = 16;
+module.exports=exportedMethods;
 
+/*
 const debug = true;
 const logDebug = function logDebug(str) {
   if (debug) console.error(str);
@@ -128,3 +181,4 @@ module.exports = {
   setPayment,
   getAll
 };
+*/

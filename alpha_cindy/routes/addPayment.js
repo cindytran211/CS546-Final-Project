@@ -1,7 +1,44 @@
 const express = require('express');
 const router = express.Router();
-const payments = require('../data/payments');
+//const payments = require('../data/payments');
+const data=require('../data');
+const validation = require('../validation');
+const theusers=data.users;
+const thepayments=data.payments;
 
+router.get('', async(req,res) =>
+{
+    res.render('pages/addPayment');
+});
+
+router.post('',async(req,res) =>
+{
+    try
+    {
+        req.body.cardName=validation.checkCardName(req.body.cardName);
+        req.body.cardNumber=validation.checkCardNumber(req.body.cardNumber);
+        req.body.cardBank=validation.checkBankName(req.body.cardBank);
+        req.body.expDate=validation.checkExpirationDate(req.body.expDate);
+        req.body.description=validation.checkDescription(req.body.description);
+        const updateUser=await thepayments.addPayment(req.session.userId,req.body.cardName,req.body.cardNumber,
+            req.body.cardType,req.body.cardBank,req.body.expDate,req.body.description);
+        if(!updateUser)
+        {
+            res.status(500).send("Internal Server Error");
+        }
+        else
+        {
+            //console.log("hi");
+            //console.log(updateUser);
+            res.redirect('/addPayment');
+        }
+    }
+    catch(e)
+    {
+        res.status(400).render('pages/addPayment',{error1:e});
+    }
+});
+/*
 const debug = true;
 const logDebug = function logDebug(str) {
   if (debug) console.error(str);
@@ -34,14 +71,12 @@ router.get('/:id', async (req, res) => {
         return;
     }
 
-/*
     if ( idnum > 2 )
     {
         errorMsg = "id num must be less than 3 was "+idnum ;
         res.status(400).render('../views/pages/addPayment', { error1: errorMsg, idnum: 0 } );
         return;
     }
-*/
 
     let rtnArray = await payments.getAll(user);
     // fetch info from db collection for users payment array
@@ -105,5 +140,5 @@ router.post('/', async (req, res) => {
 });
 
 
-
+*/
 module.exports = router;
