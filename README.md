@@ -10,6 +10,12 @@ Group 43
 - Edward Kashulsky
 - Cindy Tran
 
+# versions
+- **beta version is the only complete version** that has been tested, this should be the submitted version
+- alpha_jamie is an incomplete version that has been tested
+- alpha_cindy this is the alpha_jamie plus modification from cindy, broke many functions, no new functionality added
+- integration version this is the beta version plust modification from team members, broke most functionality, no new functionality added
+
 # installation instructions
 - download src from github
 - choose version you want to user example alpha, beta, integration
@@ -33,7 +39,7 @@ Group 43
 # admin instructions
 - login as admin password admin10
 - add Pet to create and new pet entry (file images must be copied to public/images seperately)
-- search for pet to update info
+- search for pet to update pet info
 - show ( and change status of ) orders for all users
 
 
