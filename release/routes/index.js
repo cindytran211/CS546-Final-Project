@@ -7,6 +7,7 @@ const selectaPetRoutes = require('./selectaPet');
 const selectOrderRoutes = require('./selectOrder');
 const addPaymentRoutes = require('./addPayment');
 const showOrdersRoutes = require('./showOrders');
+const favPetListRoutes = require('./favPetList');
 
 const debug = false;
 const logDebug = function logDebug(str) {
@@ -24,6 +25,7 @@ const constructorMethod = (app) => {
     app.use('/searchPet', searchPetRoutes);
     app.use('/addPayment', addPaymentRoutes);
     app.use('/showOrders', showOrdersRoutes);
+    app.use('/favorites', favPetListRoutes);
 
     app.use('*', (req, res) => {
       logDebug("Method "+req.method+" URL "+req.url);

@@ -139,7 +139,8 @@ async function getUser(userId) {
       city: 1 ,
       state: 1  ,
       zipcode: 1,
-      orderArray: 1
+      orderArray: 1,
+      favorites: 1
       }
 
   let user = await usersCollection.find( query, { projection: proj  }).toArray();
@@ -156,6 +157,7 @@ async function getUser(userId) {
       userMatch.zipcode  = element.zipcode ;
       userMatch.age  = element.age ;
       userMatch.orderArray  = element.orderArray ;
+      userMatch.favorites = element.favorites;
       found = true;
       logDebug(element);
     }
@@ -178,6 +180,7 @@ async function getUser(userId) {
     zipcode:userMatch.zipcode  ,
     age:userMatch.age,
     orderArray:userMatch.orderArray,
+    favorites:userMatch.favorites,
     authenticated: true
     }
 
@@ -246,6 +249,7 @@ async function setUser( up ) {
       state: up.state,
       zipcode: up.zipcode,
       orderArray: up.orderArray,
+      favorites: up.favorites,
       age: up.age
     };
 
@@ -294,11 +298,83 @@ async function orderUser(userId, transId) {
 
 }
 
+async function addFavoritesUser(userId, petId) {
+  
+  let rtn = await getUser(userId);
+  if ( Array.isArray( rtn.favorites ) == false ) 
+    rtn.favorites = [];
+  if ( petId != 0 ) {
+    rtn.favorites.push(petId);
+    let rtn2 = await setUser(rtn);
+  }
+  
+  return ( rtn.favorites );
+
+}
+
+async function delFavoritesUser(userId, petId) {
+  
+  let newlist = [];
+  let rtn = await getUser(userId);
+  if ( Array.isArray( rtn.favorites ) == false ) 
+    rtn.favorites = [];
+  if ( petId != 0 ) {
+    for ( let i=0;i<rtn.favorites.length ; i++) {
+      if ( rtn.favorites[i] != petId )
+        newlist.push(petId);
+    }
+    rtn.favorites = newlist;
+    let rtn2 = await setUser(rtn);
+  }
+  
+  return ( rtn.favorites );
+
+}
+
+async function getFavoritesUser(userId) {
+  
+  let rtn = await getUser(userId);
+  if ( Array.isArray( rtn.favorites ) == false ) 
+    rtn.favorites = [];
+    
+  return ( rtn.favorites );
+
+}
+
+async function isFavoritesUser(userId, petId) {
+  
+  let found = false;
+  let rtn = await getUser(userId);
+  if ( Array.isArray( rtn.favorites ) == false ) 
+    rtn.favorites = [];
+
+  for ( let i=0; i < rtn.favorites.length ; i++)
+    if ( rtn.favorites[i] == petId) 
+      found = true;
+  
+  return ( found );
+
+}
+
+async function toggleFavoritesUser(userId, petId) {
+  if ( await isFavoritesUser(userId,petId) )
+    await delFavoritesUser(userId,petId);
+  else
+    await addFavoritesUser(userId,petId);
+}
+
+
+
 
 module.exports = {
   checkUser,
   createUser,
   getUser,
   setUser,
-  orderUser
+  orderUser,
+  getFavoritesUser,
+  addFavoritesUser,
+  delFavoritesUser,
+  toggleFavoritesUser,
+  isFavoritesUser
 };

@@ -39,6 +39,14 @@ router.get('/:id', async (req, res) => {
     if ( rtn.status == "available" )
         rtn.available = "available";
 
+    let isFav = await users.isFavoritesUser(userId,rtn.petId);
+
+    logDebug ( "is fav "+ isFav);
+    if ( isFav == true) {
+        rtn.isFav = "Favorite";
+        //errorMsg = "Favorite";
+    }
+   
     logDebug (" select a pet getting payments for "+ userId);
 
     let rtnPay = await payments.getAll(userId);
@@ -65,6 +73,11 @@ router.post('/', async (req, res) => {
     let userId = req.session.user;
     let rb = req.body;
     let cardIndex = rb.card;
+    let toggleFavorite = rb.toggleFavorite;
+    let submitComment = rb.submitComment;
+    let incLikes = rb.incLikes;
+
+    logDebug( "From "+userId+" Buy  "+ petId + " " + petName +" "+ toggleFavorite );
 
     logDebug( "From "+userId+" Buy  "+ petId + " " + petName );
 
@@ -76,6 +89,39 @@ router.post('/', async (req, res) => {
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "Please login as user  ";
         res.status(200).render('../views/pages/login', { error1: errorMsg });
+        return;
+    }
+
+    if ( toggleFavorite == "toggle") {
+
+        logDebug(" Toggle fav Post ")
+
+        await users.toggleFavoritesUser(userId,petId);
+
+        res.redirect("/selectaPet/"+petId); 
+        //res.status(200).render('../views/pages/selectaPet', rtn);
+        return;
+    }
+
+    if ( submitComment == "comment") {
+
+        logDebug ( " Submit comment " + rb.commentInput);
+
+        if ( rb.commentInput != "" ) {
+            let comment = userId+": "+rb.commentInput;
+            await pets.addCommentPet(petId,comment);
+        }
+        res.redirect("/selectaPet/"+petId); 
+        return;
+    }
+
+    if ( incLikes == "likes") {
+
+        logDebug ( " INc Likes ");
+
+        await pets.incLikesPet(petId);
+        
+        res.redirect("/selectaPet/"+petId); 
         return;
     }
 

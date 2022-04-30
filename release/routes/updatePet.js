@@ -19,7 +19,7 @@ router.get('/:id', async (req, res) => {
 
     let petId = idnum;
     logDebug("user is set to "+req.session.user);
-    let errorMsg = "Update Pet page"
+    let errorMsg = "Update Pet page - clears comments and Likes"
     if ( (req.session.user) && (req.session.user == "admin") ) { // user is authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Authenticated User)')
     } else { // user is not authenticated

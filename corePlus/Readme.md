@@ -1,7 +1,8 @@
 # CS546-Final-Project
 Project for CS546 
 
-beta - complete functional source
+core - minumum fuctions to run the adopt a per web site 
+corePlus - complete core functional plus extra features source
 
 # Group Name: 
 Group 43
@@ -14,7 +15,7 @@ Group 43
 
 # installation instructions
 - download src from github
-- choose version you want to user example alpha, beta, integration
+- choose version you want to user example alpha, beta, corePlus, integration
 - make sure mongo is installed and running
 
 # instructions for beta only
@@ -56,6 +57,9 @@ Jamie Shamilian
 - added data/payments.js to support credit card transactions
 - added data/pets.js to support searching lists of pets
 - added data/orders.js to support orders to purchase pets
+- added likes
+- added favorites
+- added comments
 
 TODO:
 developer

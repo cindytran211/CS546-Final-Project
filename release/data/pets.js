@@ -30,9 +30,9 @@ async function addPet(petId,up) {
         description: up.description,
         img: up.img,
         price: up.price,
-        status: up.status
-      //  comments: up.comments,
-      //  likes: up.likes
+        status: up.status,
+        comment: [],
+        likes: 0
     };
     newPet.petId = newPet._id.toString();
     petId = newPet.petId;
@@ -81,9 +81,9 @@ async function updatePet(petId,up) {
       description: up.description,
       img: up.img,
       price: up.price,
-      status: up.status
-    //  comments: up.comments,
-    //  likes: up.likes
+      status: up.status,
+      comment: up.comment,
+      likes: up.likes
   };
   //newPet.petId = newPet._id.toString();
   //petId = newPet.petId;
@@ -123,6 +123,33 @@ async function notAvailPet(petId) {
   let rtn2 = await updatePet(petId,rtn);
 
 }
+async function addCommentPet(petId,comment) {
+
+  let rtn = await getPet (petId);
+
+  if ( rtn.comment == null )
+    rtn.comment = [];
+
+  rtn.comment.push(comment);
+
+  let rtn2 = await updatePet(petId,rtn);
+
+}
+
+
+async function incLikesPet(petId) {
+
+  let rtn = await getPet (petId);
+
+    if ( rtn.likes == null )
+      rtn.likes = 1;
+    else
+      rtn.likes = rtn.likes + 1;
+
+  let rtn2 = await updatePet(petId,rtn);
+
+}
+
 
 async function getPet(petId) {
 
@@ -151,7 +178,9 @@ let proj = {
     description: 1  ,
     img: 1 ,
     price: 1  ,
-    status: 1  
+    status: 1,
+    comment: 1,
+    likes: 1  
     }
 
 let pet = await petsCollection.find( query, { projection: proj  }).toArray();
@@ -167,7 +196,8 @@ pet.forEach((element) => {
     petMatch.img  = element.img ;
     petMatch.price  = element.price ;
     petMatch.status  = element.status ;
-    
+    petMatch.comment  = element.comment ;
+    petMatch.likes  = element.likes ;
     found = true;
     logDebug(element);
   }
@@ -190,7 +220,9 @@ let rtn = {
   description:petMatch.description  ,
   img:petMatch.img  ,
   price:petMatch.price  ,
-  status:petMatch.status
+  status:petMatch.status,
+  comment: petMatch.comment,
+  likes: petMatch.likes
   }
 
 return rtn ;
@@ -221,12 +253,14 @@ async function searchPets(up) {
 
   let maxAge = 99;
   let maxPrice = 999999999;
+  let minLikes = 0;
+
   if ( up.age && up.age!="" )
     maxAge = parseInt(up.age);
   if ( up.price && up.price!="" )
     maxPrice = parseInt(up.price);
-
-  
+  if ( up.likes && up.likes!="" )
+    minLikes = parseInt(up.likes);
 
 /*
    queryPet = {
@@ -249,7 +283,9 @@ let proj = {
     desciption: 1  ,
     img: 1 ,
     price: 1  ,
-    status: 1  
+    status: 1 , 
+    comment: 1,
+    likes: 1  
     }
     const petsCollection = await petsCol();
     let pet = await petsCollection.find( queryPet, { projection: proj  }).toArray();
@@ -260,9 +296,11 @@ let proj = {
       logDebug( " Check age "+element.age+" price "+element.price);
       let ePrice = Number.parseInt(element.price);
       let eAge =  Number.parseInt(element.age);
+      let eLikes =  Number.parseInt(element.likes);
       if ( isNaN(ePrice) ) ePrice = 0;
       if ( isNaN(eAge) ) eAge = 0;
-      if ( ( ePrice <= maxPrice) && ( eAge <= maxAge ) ) { 
+      if ( isNaN(eLikes) ) eLikes = 0;
+      if ( ( ePrice <= maxPrice) && ( eAge <= maxAge ) && ( eLikes >= minLikes) ) { 
         element._id = element._id.toString();
         rtnArray.push(element);
         found = true;
@@ -285,6 +323,8 @@ module.exports = {
   deletePet,
   searchPets,
   updatePet,
-  notAvailPet
+  notAvailPet,
+  incLikesPet,
+  addCommentPet
 };
   

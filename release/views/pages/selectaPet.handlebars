@@ -78,7 +78,17 @@
 		<option value="sold" >
 	</datalist>
 
-<br><br>	
+<br>
+
+{{#if isFav }}
+<h3> One of My Favorite </h3>
+{{/if }}
+
+<br>
+
+  <button type="toggleFavorite" name="toggleFavorite" value="toggle">Toggle Favorite</button>
+
+<br><br>
 
 {{#if available }}
     {{#each pay}}
@@ -90,6 +100,33 @@
 {{ else }}
   <h3> Not Available </h3>
 {{/if }}
+
+{{#if likes}}
+<p> Number of Likes: {{likes}} </p>
+{{/if}}
+
+ <button type="incLikes" name="incLikes" value="likes">Increment Likes</button>
+<br><br>
+
+{{#if comment}}
+<p>Comments</p>
+{{#each comment}}
+Comment{{@index}}: {{@this}} 
+<br>
+{{/each}}
+{{/if}}
+
+<br>
+
+<label for="commentInput">Input Comment</label>
+<input id="commentInput" type="text" name="commentInput" placeholder="comment"  >
+	
+<br><br>	
+
+  <button type="submitComment" name="submitComment" value="comment">Submit Comment</button>
+
+
+<br><br>
 
 </form>
 <br>
