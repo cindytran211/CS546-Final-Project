@@ -11,8 +11,10 @@ Group 43
 - Cindy Tran
 
 # versions
-- **beta version is the only complete version** that has been tested
-- **release version** currently a copy of beta, tested and complete
+- **beta version is the only complete core version** that has been tested
+- **corePlus version is the beta plus favorites/likes/comments version** that has been tested
+- **release version** currently a copy of corePlus, tested and complete
+- older versions
 - alpha_jamie is an incomplete version that has been tested
 - alpha_cindy this is the alpha_jamie plus modification from cindy, broke many functions, no new functionality added
 - integration version this is the beta version plust modification from team members, broke functionality, no new functionality added
@@ -36,6 +38,9 @@ Group 43
 - select pet to purchase
 - order pet with payment button
 - view your order 
+- add pet to favorite list
+- like a pet
+- comment on a pet
 
 # admin instructions
 - login as admin password admin10
