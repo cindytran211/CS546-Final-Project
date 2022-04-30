@@ -15,9 +15,9 @@ Group 43
 - **corePlus version is the beta plus favorites/likes/comments version** that has been tested
 - **release version** currently a copy of corePlus, tested and complete
 - older versions
--- alpha_jamie is an incomplete version that has been tested
--- alpha_cindy this is the alpha_jamie plus modification from cindy, broke many functions, no new functionality added
--- integration version this is the beta version plust modification from team members, broke functionality, no new functionality added
+ - alpha_jamie is an incomplete version that has been tested
+ - alpha_cindy this is the alpha_jamie plus modification from cindy, broke many functions, no new functionality added
+ - integration version this is the beta version plust modification from team members, broke functionality, no new functionality added
 
 # installation instructions
 - download src from github
