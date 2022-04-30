@@ -4,10 +4,10 @@
 {{#each petSearchArray}}
 	<li>
 		{{#if img}}
-	   	<a href="./selectaPet/{{this.petId}} ">Click for {{this.name}} age is {{this.age}} price {{this.price}}   
+	   	<a href="./selectaPet/{{this.petId}} ">Click for {{this.petName}} age is {{this.age}} price {{this.price}}   
 		   <img src="/public/images/{{img}}" alt="no image" style="width:42px;height:42px;"> </a>
 	   	{{else}}
-	    <a href="./selectaPet/{{this.petId}} ">Click for {{this.name}} age is {{this.age}} price {{this.price}}   
+	    <a href="./selectaPet/{{this.petId}} ">Click for {{this.petName}} age is {{this.age}} price {{this.price}}   
 			<img src="/public/images/no_image.jpeg" alt="no_image" style="width:42px;height:42px;"></a>
 	   	{{/if}}
 	</li>
