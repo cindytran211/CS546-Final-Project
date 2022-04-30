@@ -11,9 +11,9 @@ Group 43
 - Cindy Tran
 
 # versions
-- **beta version is the only complete basic-core version** that has been tested
-- **corePlus version is the beta plus favorites/likes/comments version** that has been tested
 - **release version** currently a copy of corePlus, tested and complete
+- **corePlus version is the beta plus favorites/likes/comments version** that has been tested
+- **beta version is the complete basic-core version** that has been tested
 - older versions
   - alpha_jamie is an incomplete version that has been tested
   - alpha_cindy this is the alpha_jamie plus modification from cindy, broke many functions, no new functionality added
