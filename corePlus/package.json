@@ -1,0 +1,24 @@
+{
+  "name": "cs-546-group43_final",
+  "version": "1.0.0",
+  "description": "pet adoption",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "seed": "node seed.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Group43",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.26.0",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "crypto": "^1.0.1",
+    "email-validator": "^2.0.4",
+    "express": "^4.17.2",
+    "express-handlebars": "^5.3.0",
+    "express-session": "^1.17.1",
+    "mongodb": "^4.3.1"
+  }
+}
