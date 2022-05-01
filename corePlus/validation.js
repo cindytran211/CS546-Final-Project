@@ -61,10 +61,10 @@ module.exports=
          {
              throw "Error: Age is not in the correct format"
          }
-         else
-         {
-             return age;
-         }
+		 const a = parseInt(age);
+		 if ( isNaN(a) ) throw "Error: Age is not in the correct format";
+         if ( a < 0 )   throw "Error: Age must be positive is not in the correct format";
+         return age;	 
      },
      checkStreet(street)
      {
