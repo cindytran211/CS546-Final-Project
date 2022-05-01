@@ -4,7 +4,7 @@ const users = require('../data/users');
 const bcrypt = require('bcryptjs');
 
 
-const debug = false;
+const debug = true;
 const logDebug = function logDebug(str) {
   if (debug) console.error(str);
 };

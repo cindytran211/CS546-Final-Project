@@ -15,8 +15,11 @@ let initVector1 = [136, 49, 184, 134, 153, 205, 192, 232, 241, 240, 152, 251, 22
 let Securitykey1 =  [139, 18, 7, 139, 33, 55, 108, 217, 222, 222, 116, 34, 115, 58, 29, 64, 66, 212, 101, 8, 254, 76, 75, 160, 18, 186, 136, 130, 27, 108, 164, 80];
 
 
-let initVector = new Uint8Array( initVector1 ).buffer;
-let Securitykey = new Uint8Array( Securitykey1 ).buffer;
+//let initVector = new Uint8Array( initVector1 ).buffer;
+//let Securitykey = new Uint8Array( Securitykey1 ).buffer;
+
+let initVector = new DataView ( new Uint8Array( initVector1 ).buffer) ;
+let Securitykey = new DataView (  new Uint8Array( Securitykey1 ).buffer );
 
 /*
 console.log("The random data is: "+ initVector0.toString('hex'));
@@ -116,8 +119,11 @@ async function setPayment(userId, up ) {
 
 
     let id = up._id;
+    if ( id == null )
+        logDebug("Create / update and id is null" );
+    else
+        logDebug("Create / update "+ id );
 
-    logDebug("Create / update "+ up._id );
     let cardNumString = "";
     let ty = typeof  up.cardNumber;
 

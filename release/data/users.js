@@ -47,6 +47,8 @@ async function createUser(userId, passWord) {
   if (passWord.length < 6) throw "Password not long enough";
 
   let found = await checkuserId(userId);
+  
+  logDebug ( "Create user "+userId + " was found = " + found );
 
   if ( found == true) throw "Name in Use Already";
 
@@ -199,7 +201,10 @@ async function createUser(userId, passWord) {
 
   if (passWord.length < 6) throw "Password not long enough";
 
-  if (checkuserId(userId) == true) throw "Name in Use Already";
+  let found = await checkuserId(userId);
+
+  if ( found == true) throw "Name in Use Already";
+  //if (checkuserId(userId) == true) throw "Name in Use Already";
 
   let hashPass = await bcrypt.hash(passWord, salt);
 

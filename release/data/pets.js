@@ -58,7 +58,7 @@ async function addPet(petId,up) {
       throw "Failed to create " + newPet;
     } 
   
-    logDebug(" pet created is true " + petId + " " +insertInfo.insertedCount );
+    logDebug(" pet created is true " + petId + " ");
 
     return( newPet);
 
