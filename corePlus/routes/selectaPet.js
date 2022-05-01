@@ -92,6 +92,13 @@ router.post('/', async (req, res) => {
         return;
     }
 
+    let rtn0 = await users.getUser(userId);
+    if ( ( rtn0.email == null ) || (rtn0.email.trim == "")) {
+        let errorMsg = "Update your profile";
+        res.status(200).render('../views/pages/authUser', { error1: errorMsg });
+        return;
+    }
+
     if ( toggleFavorite == "toggle") {
 
         logDebug(" Toggle fav Post ")
@@ -125,12 +132,6 @@ router.post('/', async (req, res) => {
         return;
     }
 
-    let rtn0 = await users.getUser(userId);
-    if ( ( rtn0.email == null ) || (rtn0.email.trim == "")) {
-        let errorMsg = "Update your profile";
-        res.status(200).render('../views/pages/authUser', { error1: errorMsg });
-        return;
-    }
 
     let payment = await payments.getPayment(userId,cardIndex);
 
