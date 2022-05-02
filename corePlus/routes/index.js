@@ -8,6 +8,8 @@ const selectOrderRoutes = require('./selectOrder');
 const addPaymentRoutes = require('./addPayment');
 const showOrdersRoutes = require('./showOrders');
 const favPetListRoutes = require('./favPetList');
+const browseAllPetsRoutes = require('./browseAllPets');
+
 
 const debug = false;
 const logDebug = function logDebug(str) {
@@ -26,6 +28,7 @@ const constructorMethod = (app) => {
     app.use('/addPayment', addPaymentRoutes);
     app.use('/showOrders', showOrdersRoutes);
     app.use('/favorites', favPetListRoutes);
+    app.use('/browseAllPets', browseAllPetsRoutes);
 
     app.use('*', (req, res) => {
       logDebug("Method "+req.method+" URL "+req.url);
