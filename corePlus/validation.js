@@ -205,10 +205,14 @@ module.exports=
             {
                 throw "Error: Pet Color is not in the correct format"
             }
-            else
-            {
-               return petcolor;
+            let check = petcolor;
+            let ans = [ "black", "gray","red", "golden", "brown", "white" ]; 
+            for ( let i=0; i< ans.length; i++ ) {
+                if ( check == ans[i] )
+                    return check;
             }
+            throw "Error: Pet Color is not in the correct format"
+
         },
         checkPetType(pettype)
         {
@@ -216,10 +220,14 @@ module.exports=
             {
                 throw "Error: Pet Type is not in the correct format"
             }
-            else
-            {
-               return pettype;
+            let check = pettype;
+            let ans = [ "cat", "dog" ];
+            for ( let i=0; i< ans.length; i++ ) {
+                if ( check == ans[i] )
+                    return check;
             }
+            throw "Error: Pet Type is not in the correct format";
+            
         },
         checkPetAge(petage)
         {
@@ -260,9 +268,30 @@ module.exports=
             {
                 throw "Error: Pet Status is not in the correct format"
             }
-            else
-            {
-               return petstatus;
+
+            let check = petstatus;
+            let ans = [ "available", "sold" ];
+            for ( let i=0; i< ans.length; i++ ) {
+                if ( check == ans[i] )
+                    return check;
             }
+            throw "Error: Pet Status is not in the correct format"
+
         },        
+        checkOrderStatus(orderstatus)
+        {
+            if(( orderstatus == null) || (orderstatus.trim()=="") )
+            {
+                throw "Error: Order Status is not in the correct format"
+            }
+
+            let check = orderstatus;
+            let ans = [ "billed", "delivered", "refunded" ];
+            for ( let i=0; i< ans.length; i++ ) {
+                if ( check == ans[i] )
+                    return check;
+            }
+            throw "Error: Order Status is not in the correct format"
+
+        },         
 }
