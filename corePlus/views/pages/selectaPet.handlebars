@@ -88,9 +88,10 @@
 
   <button type="toggleFavorite" name="toggleFavorite" value="toggle">Toggle Favorite</button>
 
-<br><br>
+<br>
 
 {{#if available }}
+<br>
     {{#each pay}}
     <br>
      <button type="Order{{@index}}" name="card" value="{{@index}}" >Order with Payment card  {{@index}} from bank  {{this}}</button>
@@ -104,7 +105,7 @@
 {{#if likes}}
 <p> Number of Likes: {{likes}} </p>
 {{/if}}
-
+<br>
  <button type="incLikes" name="incLikes" value="likes">Increment Likes</button>
 <br><br>
 

@@ -94,8 +94,8 @@ router.post('/', async (req, res) => {
 
     let rtn0 = await users.getUser(userId);
     if ( ( rtn0.email == null ) || (rtn0.email.trim == "")) {
-        let errorMsg = "Update your profile";
-        res.status(200).render('../views/pages/authUser', { error1: errorMsg });
+        let errorMsg = "Update your profile please";
+        res.status(200).render('../views/pages/authUser', { error1: errorMsg, userId: req.session.user });
         return;
     }
 

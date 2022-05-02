@@ -55,7 +55,7 @@ router.post('/', async (req, res) => {
 
 
     rtn = {};
-    rtn.error1 = "Select pet list";
+    rtn.error1 = "Select pet list done";
     let searchArray = await pets.searchPets(rb);
     if (searchArray.length == 0 ) {
         rtn.error1 = "Select Pet List = No pets of that type";

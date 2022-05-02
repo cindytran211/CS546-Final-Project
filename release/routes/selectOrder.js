@@ -80,6 +80,7 @@ router.post('/', async (req, res) => {
 
     rtn1.status = rb.status;
     let rtn2 = await orders.updateOrder(rtn1);
+    rtn2.error1 = "Update Order Done";
 
     res.status(200).render('../views/pages/updateOrders', rtn2);
 

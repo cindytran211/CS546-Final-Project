@@ -81,7 +81,7 @@ router.post('/', async (req, res) => {
         rtn = await users.setUser(set);
         // fetch info from db collection for users
         rtn = await users.getUser(user);
-        rtn.error1 =  errorMsg;
+        rtn.error1 =  "Update Profile Done";
 
     } catch (e) {
         rtn = await users.getUser(user);

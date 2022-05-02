@@ -53,15 +53,9 @@ module.exports=
      },
      checkAge(age)
      {
-         if ( age == null)
+         if (( age == null)||(age.trim()==""))
             throw "Error: Age is not in the correct format"
-         let stringage=age.toString();
-         let newstring=stringage.replace(/0/g,"");
-         if(newstring=="")
-         {
-             throw "Error: Age is not in the correct format"
-         }
-		 const a = parseInt(age);
+		 const a = parseInt(age,10);
 		 if ( isNaN(a) ) throw "Error: Age is not in the correct format";
          if ( a < 0 )   throw "Error: Age must be positive is not in the correct format";
          return age;	 
@@ -105,6 +99,10 @@ module.exports=
         {
             throw "Error: Zipcode is not in the correct format"
         }
+        if(zipcode.length < 5 || !(/^[0-9]{5}$/.test(zipcode)))
+        {
+            throw 'Error: The zipcode is not in the correct format'
+        }   
         else
         {
             return zipcode;
@@ -116,6 +114,10 @@ module.exports=
         {
             throw "Error: Phone Number is not in the correct format"
         }
+        if(phonenumber.length < 12 || !(/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/.test(phonenumber)))
+        {
+            throw 'Error: The Phone Number is not in the correct format'
+        }   
         else
         {
             return phonenumber;
@@ -149,6 +151,10 @@ module.exports=
          {
              throw "Error: Card Type can not be empty"
          }
+         if ( ( str != "credit" ) && ( str != "debit" ) )
+         {
+            throw "Error: Card Type must be credit or debit"
+         }
          else
          {
             return str;
@@ -172,7 +178,7 @@ module.exports=
     {    //[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}
         if(( str == null) || (str.trim()=="") )
         {
-            throw "Error: Card NUmkber can not be empty"
+            throw "Error: Card Number can not be empty"
         }
         else
         {
@@ -182,16 +188,6 @@ module.exports=
                 throw "Error: card Number incorrect format"
         }
     },
-    /*
-        validation.checkPetName(rb.petName);
-        validation.checkColor(rb.color);
-        validation.checkPetType(rb.petType);
-        validation.checkAge(rb.age);
-        validation.checkBreed(rb.breed);
-        validation.checkPrice(rb.price);
-        validation.checkStatus(rb.status);
-
-    */
         checkPetName(petname)
         {
             if(( petname == null) || (petname.trim()=="") )
@@ -231,10 +227,10 @@ module.exports=
             {
                 throw "Error: Pet Age is not in the correct format"
             }
-            else
-            {
-               return petage;
-            }
+            const a = parseInt(petage,10);
+            if ( isNaN(a) ) throw "Error: Pet Age is not in the correct format";
+            if ( a < 0 )   throw "Error: Pet Age must be positive is not in the correct format";
+            return petage;	 
         },
         checkPetBreed(petbreed)
         {
