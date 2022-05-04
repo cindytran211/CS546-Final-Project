@@ -11,7 +11,7 @@ Group 43
 - Cindy Tran
 
 # versions
-- **release version** currently a copy of corePlus, tested and complete
+- **release version** currently a copy of corePlus + ajax, tested and complete
 - **corePlus version is the beta plus favorites/likes/comments version** that has been tested
 - **beta version is the complete basic-core version** that has been tested
 - older versions
