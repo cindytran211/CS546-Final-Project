@@ -63,6 +63,38 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/loginjson', async (req, res) => {
+    let userId = req.body.userId.toLowerCase();
+    let passWord = req.body.password;
+
+    try {
+
+        let rtn = await users.checkUser (userId, passWord );
+     
+        if ( rtn.authenticated == true ) {
+            logDebug( "Pass OK " + req.method + ' ' + req.originalUrl + ' (Authenticated User)')
+            // set the user to userId from userMatch
+            req.session.user = userId;
+            //res.redirect('/private');
+            errorMsg="Login OK"
+            res.status(200).json( { error1: errorMsg });
+            return;
+        } else {
+            logDebug( "Pass failed " + req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
+            errorMsg = "Login failed userId and/or password try again";
+            res.status(400).json( { error1: errorMsg });
+            return;
+        }
+    } catch (e) {
+        logDebug( "Catch1 Error "+e+" " + req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
+        errorMsg = "Login failed try again";
+        //res.status(400).render('../views/pages/login', { error1 : errorMsg });
+        res.status(400).json( { error1: e });
+        return;
+    }
+});
+
+
 router.get('/signup', (req, res) => {
     logDebug("user is set to "+req.session.user);
     if (req.session.user) { // user is authenticated
