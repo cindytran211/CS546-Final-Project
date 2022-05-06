@@ -11,13 +11,7 @@ Group 43
 - Cindy Tran
 
 # versions
-- **release version** currently a copy of corePlus + ajax, tested and complete
-- **corePlus version is the beta plus favorites/likes/comments version** that has been tested
-- **beta version is the complete basic-core version** that has been tested
-- older versions
-  - alpha_jamie is an incomplete version that has been tested
-  - alpha_cindy this is the alpha_jamie plus modification from cindy, broke many functions, no new functionality added
-  - integration version this is the beta version plust modification from team members, broke functionality, no new functionality added
+- **release version** final code includes REQUIRED client side javascript/ajax, tested and complete
 
 # installation instructions
 - download src from github
