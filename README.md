@@ -15,13 +15,14 @@ Group 43
 
 # installation instructions
 - download src from github
-- choose version you want to user example alpha, beta, integration
+- choose version you want to use release
 - make sure mongo is installed and running
 
 # instructions for beta/release only
 - from shell npm install
 - from shell npm run seed ( creates users admin, jamie10, fills profile, fills payments ... )   
 - from shell npm start
+  - from shell npm start alt ( alternate sign-in page with profile )
 
 # running instructions manual
 - Create a normal user using the sign-up option at login screen
