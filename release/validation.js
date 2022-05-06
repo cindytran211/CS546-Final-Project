@@ -4,7 +4,7 @@ module.exports=
 {
      checkUserName(username)
      {
-        if(username.length < 4 || !(/^[A-Za-z0-9]*$/.test(username)) || username.indexOf(" ")>-1)
+        if(  ( username == null) || username.length < 4 || !(/^[A-Za-z0-9]*$/.test(username)) || username.indexOf(" ")>-1)
         {
             throw 'Error: The Username is not in the correct format'
         }
@@ -12,7 +12,7 @@ module.exports=
      },
      checkPassWord(password)
      {
-         if(password.length<6 || password.indexOf(" ")>-1)
+         if( ( password == null) || (password.length < 6) || (password.indexOf(" ") > -1 ))
          {
             throw "Error: The Password is not in the correct format"
          }
@@ -20,7 +20,7 @@ module.exports=
      },
      checkEmail(email)
      {
-         if(validatior.validate(email))
+         if(  validatior.validate(email) )
          {
              return email
          }

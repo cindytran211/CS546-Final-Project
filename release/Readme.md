@@ -1,10 +1,7 @@
 # CS546-Final-Project
 Project for CS546 
 
-core - minumum fuctions to run the adopt a per web site 
-corePlus - complete core functional plus extra features source
-
-release - complete functional source (corePlus) 
+release - complete functional source 
 
 # Group Name: 
 Group 43
@@ -62,6 +59,8 @@ Jamie Shamilian
 - added likes
 - added favorites
 - added comments
+- added alternate signup page ** filling profile info during signup WHICH is bad design.
+  - In order to have function copy "alt" files over the originals routes/login.js, views/pages/signup.handlebars
 
 TODO:
 developer

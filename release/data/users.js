@@ -42,7 +42,7 @@ async function createUser(userId, passWord) {
   if (userId.search(/^[a-z0-9]{4,}$/) < 0)
     throw "userId Illegal chars or Not long enough";
 
-  if (userId.search(/\s/) >= 0) throw "Password has spaces";
+  if (userId.search(/\s/) >= 0) throw "UserId has spaces";
 
   if (passWord.length < 6) throw "Password not long enough";
 
@@ -191,13 +191,14 @@ async function getUser(userId) {
   return rtn ;
 }
 
-async function createUser(userId, passWord) {
+async function createUserWithProfile(userId, passWord, up) {
+
   userId = userId.toLowerCase();
 
   if (userId.search(/^[a-z0-9]{4,}$/) < 0)
     throw "userId Illegal chars or Not long enough";
 
-  if (userId.search(/\s/) >= 0) throw "Password has spaces";
+  if (userId.search(/\s/) >= 0) throw "UserId has spaces";
 
   if (passWord.length < 6) throw "Password not long enough";
 
@@ -206,6 +207,16 @@ async function createUser(userId, passWord) {
   if ( found == true) throw "Name in Use Already";
   //if (checkuserId(userId) == true) throw "Name in Use Already";
 
+  up.firstName=validation.checkFirstName(up.firstName);
+  up.lastName=validation.checkLastName(up.lastName);
+  up.age=validation.checkAge(up.age);
+  up.streetAddress=validation.checkStreet(up.streetAddress);
+  up.city=validation.checkCity(up.city);
+  up.state=validation.checkState(up.state);
+  up.zipcode=validation.checkZipcode(up.zipcode);
+  up.mobilePhone=validation.checkPhoneNumber(up.mobilePhone);
+  up.email = validation.checkEmail(up.email);
+
   let hashPass = await bcrypt.hash(passWord, salt);
 
   const newUserDb = {
@@ -213,12 +224,13 @@ async function createUser(userId, passWord) {
     password: hashPass
   };
 
-
   const userCollection = await usersCol();
   const insertInfo = await userCollection.insertOne(newUserDb);
   if (insertInfo.insertedCount === 0) {
     throw "Failed to create " + newUserDb;
   }
+
+  await setUser (up);
 
   logDebug(" user created is true " + userId);
 
@@ -376,6 +388,7 @@ async function toggleFavoritesUser(userId, petId) {
 module.exports = {
   checkUser,
   createUser,
+  createUserWithProfile,
   getUser,
   setUser,
   orderUser,

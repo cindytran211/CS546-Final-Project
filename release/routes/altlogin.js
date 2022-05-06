@@ -118,10 +118,20 @@ router.post('/signup', async (req, res) => {
 
     try {
 
-		validation.checkUserName(userId);
+        validation.checkUserName(userId);
         validation.checkPassWord(passWord);
 
-        let rtn = await users.createUser (userId, passWord );
+        up.firstName=validation.checkFirstName(up.firstName);
+        up.lastName=validation.checkLastName(up.lastName);
+        up.age=validation.checkAge(up.age);
+        up.streetAddress=validation.checkStreet(up.streetAddress);
+        up.city=validation.checkCity(up.city);
+        up.state=validation.checkState(up.state);
+        up.zipcode=validation.checkZipcode(up.zipcode);
+        up.mobilePhone=validation.checkPhoneNumber(up.mobilePhone);
+        up.email = validation.checkEmail(up.email);
+
+        let rtn = await users.createUserWithProfile (userId, passWord, up );
         if ( rtn.userInserted == true ) {
             logDebug( "Pass OK " + req.method + ' ' + req.originalUrl + ' (Authenticated User)')
             // set the user to userId from userMatch
