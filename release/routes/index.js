@@ -1,4 +1,6 @@
+
 const loginRoutes = require('./login');
+const altloginRoutes = require('./altlogin');
 const profileRoutes = require('./profile');
 const addPetRoutes = require('./addPet');
 const updatePetRoutes = require('./updatePet');
@@ -18,7 +20,11 @@ const logDebug = function logDebug(str) {
 
 
 const constructorMethod = (app) => {
-    app.use('/', loginRoutes);
+    if ( global.alt == false ) 
+      app.use('/', loginRoutes);
+    else
+      app.use('/', altloginRoutes);
+  
     app.use('/profile', profileRoutes);
     app.use('/addPet', addPetRoutes);
     app.use('/updatePet', updatePetRoutes);

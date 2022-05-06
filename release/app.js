@@ -14,6 +14,14 @@ function logit( str ) {
     console.log('[' + new Date().toUTCString() + ']: ' + str );
 }
 
+global.alt = false;
+
+process.argv.forEach((val, index) => {
+  //console.log(`${index}: ${val}`);
+  if ( val == "alt" )
+    global.alt = true;
+});
+
 app.use;
 app.use("/public", staticDir);
 app.use(express.json());

@@ -13,14 +13,16 @@ Group 43
 - Cindy Tran
 
 # installation instructions
+# installation instructions
 - download src from github
 - choose version you want to user example release
 - make sure mongo is installed and running
 
-# instructions for beta only
+# instructions for release only
 - from shell npm install
 - from shell npm run seed ( creates users admin, jamie10, fills profile, fills payments ... )   
 - from shell npm start
+  - from shell npm start alt ( alternate sign-in page with profile)
 
 # running instructions manual
 - Create a normal user using the sign-up option at login screen
@@ -60,7 +62,7 @@ Jamie Shamilian
 - added favorites
 - added comments
 - added alternate signup page ** filling profile info during signup WHICH is bad design.
-  - In order to have function copy "alt" files over the originals routes/login.js, views/pages/signup.handlebars
+  - In order to use this version start with "npm start alt"
 
 TODO:
 developer
