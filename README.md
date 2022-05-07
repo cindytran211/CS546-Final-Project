@@ -11,7 +11,7 @@ Group 43
 - Cindy Tran
 
 # versions
-- **release version** final code includes REQUIRED client side javascript/ajax, tested and complete
+- **release version** final code includes required features , tested and complete
 
 # installation instructions
 - download src from github
