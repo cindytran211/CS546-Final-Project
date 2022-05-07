@@ -27,6 +27,7 @@ Group 43
 # running instructions manual
 - From browser open http://localhost:3000 
 - Create a normal user using the sign-up option at login screen
+  - if alt signup create normal user with all profile info
 - login as normal user ( example jamie10 password jamie10 )
 - fill out your profile
 - add payment methods
