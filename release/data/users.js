@@ -303,7 +303,7 @@ async function setUser( up ) {
     up.mobilePhone=validation.checkPhoneNumber(up.mobilePhone);
     up.email = validation.checkEmail(up.email);
 
-    const newUser = {
+    let newUser = {
       firstName: up.firstName,
       lastName : up.lastName,
       email : up.email,
@@ -318,15 +318,26 @@ async function setUser( up ) {
     };
 
   const usersCollection = await usersCol();
-  let user = await usersCollection.find({}, { projection: { _id: 1, userId: 1 , firstName:1, lastName: 1 } }).toArray();
+  let user = await usersCollection.find({}, { projection: { _id: 1, userId: 1 , favorites:1, orderArray: 1 } }).toArray();
   user.forEach((element) => {
     if (element.userId == userId) { 
       userMatch.userId = element.userId;
       //userMatch.password = element.password;
+      userMatch.favorites = element.favorites;
+      userMatch.orderArray = element.orderArray; 
       userMatch._id = element._id;
       found = true;
     }
   });
+
+  if ( newUser.orderArray == null ) {
+    if ( Array.isArray( userMatch.orderArray ) == true )
+      newUser.orderArray =  userMatch.orderArray;
+  }
+  if ( newUser.favorites == null ) {
+    if ( Array.isArray( userMatch.favorites ) == true )
+      newUser.favorites =  userMatch.favorites;
+  }
 
   let updateInfo;
   try {
