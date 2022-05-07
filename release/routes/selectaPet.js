@@ -93,11 +93,7 @@ router.post('/', async (req, res) => {
     }
 
     let rtn0 = await users.getUser(userId);
-    if ( ( rtn0.email == null ) || (rtn0.email.trim == "")) {
-        let errorMsg = "Update your profile please";
-        res.status(200).render('../views/pages/authUser', { error1: errorMsg, userId: req.session.user });
-        return;
-    }
+   
 
     if ( toggleFavorite == "toggle") {
 
@@ -124,7 +120,7 @@ router.post('/', async (req, res) => {
 
     if ( incLikes == "likes") {
 
-        logDebug ( " INc Likes ");
+        logDebug ( " Inc Likes ");
 
         await pets.incLikesPet(petId);
         
@@ -132,6 +128,12 @@ router.post('/', async (req, res) => {
         return;
     }
 
+    if ( ( rtn0.email == null ) || (rtn0.email.trim == "")) {
+        let errorMsg = "Update your profile to place and order";
+        res.status(200).render('../views/pages/profile', { error1: errorMsg, userId: req.session.user });
+        //res.status(200).render('../views/pages/authUser', { error1: errorMsg, userId: req.session.user });
+        return;
+    }
 
     let payment = await payments.getPayment(userId,cardIndex);
 

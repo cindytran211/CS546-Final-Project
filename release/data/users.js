@@ -237,6 +237,51 @@ async function createUserWithProfile(userId, passWord, up) {
   return { userInserted: true };
 }
 
+async function setFavUser( up ) {
+  let userMatch = {};
+  let found = false;
+  let userId = up.userId.toLowerCase();
+  //let userId = up.userId;
+
+  logDebug("setFavuser");
+
+    const newUser = {
+      favorites: up.favorites,
+    };
+
+  const usersCollection = await usersCol();
+  let user = await usersCollection.find({}, { projection: { _id: 1, userId: 1 } }).toArray();
+  user.forEach((element) => {
+    if (element.userId == userId) { 
+      userMatch.userId = element.userId;
+      //userMatch.password = element.password;
+      userMatch._id = element._id;
+      found = true;
+    }
+  });
+
+  let updateInfo;
+  try {
+    updateInfo = await usersCollection.updateOne( { _id: userMatch._id },{ $set:  newUser } );
+    logDebug(updateInfo);
+    } catch (e) {
+    // if (updateInfo.insertedCount === 0) {
+        logDebug("updateone failed");
+        logDebug(updateInfo);
+        throw "Failed to update "+ userId;
+    }
+
+  if (found == false) throw "Can not find user";
+
+  let compareToMatch = false;
+  logDebug(userMatch);
+
+  let itMatches = false;
+  return { authenticated: true };
+}
+
+
+
 async function setUser( up ) {
   let userMatch = {};
   let found = false;
@@ -324,7 +369,8 @@ async function addFavoritesUser(userId, petId) {
     rtn.favorites = [];
   if ( petId != 0 ) {
     rtn.favorites.push(petId);
-    let rtn2 = await setUser(rtn);
+    //let rtn2 = await setUser(rtn);
+    let rtn2 = await setFavUser(rtn);
   }
   
   return ( rtn.favorites );
