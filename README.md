@@ -31,7 +31,8 @@ Group 43
 - login as normal user ( example jamie10 password jamie10 )
 - fill out your profile
 - add payment methods
-- search for pets to purchase
+- search for pets to purchase (fill in via pull downs, only fields you want to restrict) 
+- browse all pets
 - select pet to purchase
 - order pet with payment button
 - view your order 
