@@ -22,11 +22,12 @@ Group 43
 - from shell npm install
 - from shell npm run seed ( creates users admin, jamie10, fills profile, fills payments ... )   
 - from shell npm start
-  - from shell npm start alt ( alternate sign-in page with profile )
+  - from shell npm start alt ( alternate sign-up page with profile )
 
 # running instructions manual
 - From browser open http://localhost:3000 
 - Create a normal user using the sign-up option at login screen
+  - if alt signup create normal user with all profile info
 - login as normal user ( example jamie10 password jamie10 )
 - fill out your profile
 - add payment methods
