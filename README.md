@@ -18,7 +18,7 @@ Group 43
 - choose version you want to use release
 - make sure mongo is installed and running
 
-# instructions for beta/release only
+# instructions for release
 - from shell npm install
 - from shell npm run seed ( creates users admin, jamie10, fills profile, fills payments ... )   
 - from shell npm start
