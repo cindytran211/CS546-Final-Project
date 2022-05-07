@@ -25,6 +25,7 @@ Group 43
   - from shell npm start alt ( alternate sign-in page with profile)
 
 # running instructions manual
+- From browser open http://localhost:3000 
 - Create a normal user using the sign-up option at login screen
 - login as normal user ( example jamie10 password jamie10 )
 - fill out your profile
