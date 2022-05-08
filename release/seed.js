@@ -55,7 +55,7 @@ async function main() {
 	  
 	    
 		const newPet1 = {
-        petName: "fido1",
+        petName: "Geralt",
         petType: "dog",
         color : "black",
         breed : "lab",
@@ -69,7 +69,7 @@ async function main() {
 		rtn = await pets.addPet("",newPet1);
 	  
 		const newPet2 = {
-        petName: "fido2",
+        petName: "Cirilla",
         petType: "dog",
         color : "golden",
         breed : "golden",
@@ -83,7 +83,7 @@ async function main() {
 		rtn = await pets.addPet("",newPet2);
 		
 		const newPet3 = {
-        petName: "fido3",
+        petName: "Yennefer",
         petType: "dog",
         color : "black",
         breed : "lab",
@@ -97,7 +97,7 @@ async function main() {
 		rtn = await pets.addPet("",newPet3);
 		
 		const newPet4 = {
-        petName: "fido4",
+        petName: "Harry",
         petType: "dog",
         color : "white",
         breed : "lab",
@@ -111,13 +111,13 @@ async function main() {
 		rtn = await pets.addPet("",newPet4);
 		
 		const newPet5 = {
-        petName: "fido5",
+        petName: "Zayn",
         petType: "dog",
         color : "white",
         breed : "yorkie",
         age : "3",
         description: " description ",
-        img: "dog6.jfif" ,
+        img: "dog6.jpg" ,
         price: "1000",
         status: "available"
 		};
@@ -126,7 +126,7 @@ async function main() {
 		
 		
 		const newPet6 = {
-        petName: "kitty1",
+        petName: "Louis",
         petType: "cat",
         color : "black",
         breed : "common",
@@ -140,7 +140,7 @@ async function main() {
 		rtn = await pets.addPet("",newPet6);
 	  
         const newPet7 = {
-        petName: "kitty2",
+        petName: "Liam",
         petType: "cat",
         color : "golden",
         breed : "common",
@@ -155,7 +155,7 @@ async function main() {
 		
 		
 		const newPet8 = {
-        petName: "kitty3",
+        petName: "Niall",
         petType: "cat",
         color : "gray",
         breed : "common",
@@ -169,7 +169,7 @@ async function main() {
 		rtn = await pets.addPet("",newPet8);
 		
 		const newPet9 = {
-        petName: "kitty4",
+        petName: "Dandelion",
         petType: "cat",
         color : "brown",
         breed : "common",
