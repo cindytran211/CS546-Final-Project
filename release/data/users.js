@@ -50,7 +50,7 @@ async function createUser(userId, passWord) {
   
   logDebug ( "Create user "+userId + " was found = " + found );
 
-  if ( found == true) throw "Name in Use Already";
+  if ( found == true) throw "Sorry, that name is in use already! Go log in";
 
   let hashPass = await bcrypt.hash(passWord, salt);
 
@@ -204,7 +204,7 @@ async function createUserWithProfile(userId, passWord, up) {
 
   let found = await checkuserId(userId);
 
-  if ( found == true) throw "Name in Use Already";
+  if ( found == true) throw " Sorry, that name is in use already! Go log in";
   //if (checkuserId(userId) == true) throw "Name in Use Already";
 
   up.firstName=validation.checkFirstName(up.firstName);
@@ -397,10 +397,10 @@ async function delFavoritesUser(userId, petId) {
   if ( petId != 0 ) {
     for ( let i=0;i<rtn.favorites.length ; i++) {
       if ( rtn.favorites[i] != petId )
-        newlist.push(rtn.favorites[i]);
+        newlist.push(petId);
     }
     rtn.favorites = newlist;
-    let rtn2 = await setFavUser(rtn);
+    let rtn2 = await setUser(rtn);
   }
   
   return ( rtn.favorites );
