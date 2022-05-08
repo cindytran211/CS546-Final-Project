@@ -1,6 +1,6 @@
-<h2>signup page</h2>
+<h2 class="text-center">Sign Up</h2>
 
-<form action="/signup" method="POST" id="signup-form">
+{{!-- <form action="/signup" method="POST" id="signup-form">
 	<p></p>
 
     <label for="userId">Username</label>
@@ -13,12 +13,32 @@
 
     <button type="submit">Sign up</button>
     <p></p>
-</form>
+</form> --}}
+
+<div class="d-flex align-items-center justify-content-center">
+  <form action="/signup" method="POST" id="signup-form" class="px-4 py-3 my-auto text-center">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Username: </span>
+        <input id="userId" type="text" name="userId" placeholder="userId" class="form-control" aria-describedby="basic-addon1">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Password: </span>
+        <input id="password" type="password" name="password" placeholder="password" class="form-control" aria-describedby="basic-addon1">
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button id="signup" type="submit" name="submit" class="btn btn-primary">Sign Up</button>
+    </div>
+    </form>
+    <div class="dropdown-divider"></div>
+
+</div>
+
+
 <br>
-<a href="/"> Already have an account? Click here to log-in</a>
+<p class="text-center"><a href="/login">Already have an account? Login here</a></p>
 <br>
 <br>
 {{#if error1}}
-   <h3> {{error1}} </h3>
+   <h3 class="text-center"> {{error1}} </h3>
 {{/if}}
 

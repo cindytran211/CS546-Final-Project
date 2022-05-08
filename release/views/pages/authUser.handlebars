@@ -1,22 +1,27 @@
-<h2>Authenticated User</h2>
-<p>UserId: {{userId}}</p>
+<h2 hidden>Authenticated User</h2>
+<p class="welcome text-center">Welcome! {{userId}}</p>
 
-<br>
-<a href="/profile">Click Here to edit Profile</a>
-<br>
-<a href="/addPayment/0">Click Here to add a Payment</a>
-<br>
-<a href="/browseAllPets">Click Here for All Pets List</a>
-<br>
-<a href="/favorites">Click Here for favorites Pet List</a>
-<br>
-<a href="/searchPet">Click Here to search for a Pet</a>
-<br>
-<a href="/showOrders">Click Here to show Orders</a>
-<br>
-<br>
-<a href="/logout">Click Here to Log Out</a>
+<p class="welcomemsg text-center">We hope you enjoy Blue's pet adoption, created by group 43!<br><br>
+You can manage this website by clicking around on the navbar on the top of the page. If you were to click 
+home or the Blue's Adoption logo: it would bring you to the home page (here!) <br><br>
+
+With the amount of pets in the world without a forever home, it would benefit these
+animals to have a website focusing on securing them a home. A website about adoptions
+would give pets an opportunity to be adopted from families as it will be easier to get
+interest in these pets through an online website. It would help show the amount of pets
+that need a home, and help and encourage people to adopt and save these pets. <br><br>
+Therefore, we have decided to make an online eCommerce website about online Pet
+Adoption. There will be basic core features including user creation and deletion,
+searching pets, adoption transactions, and inserting and deleting pets from the database.
+It will also include extra features that will give the website more customization including
+filtering pets to the families liking, commenting and liking pets, as well as finding and
+contacting people who have these pets currently. </p>
+
+<p class="github text-center"><a href="https://github.com/cindytran211/CS546-Final-Project">Here is a link to our github!</a></p>
+
+
+
 <br><br>
 {{#if error1}}
-   <h3> {{error1}} </h3>
+   <h3 class="text-center"> {{error1}} </h3>
 {{/if}}

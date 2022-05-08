@@ -1,20 +1,23 @@
-<h2>Show Order page</h2>
-<p>UserId: {{userId}}</p>
+<h2 class="text-center">Orders</h2>
+{{#if error1}}
+   <h3 class="text-center"> {{error1}} </h3>
+{{/if}}
+<p class="text-center">Here is your information on order {{transId}}</p>
 
 
-<h3> OrderId -  {{transId}}</h3>
-<h3> PetId -  {{petId}}</h3>
+{{!-- <h3> PetId -  {{petId}}</h3>
 <h3> Pet name - {{petName}}</h3>
 <h3> Pet price - {{petPrice}} </h3>
 <br>
-<h3>Order Status - {{status}}</h3>
+<h3>Order Status - {{status}}</h3> --}}
 
+<div class="d-flex align-items-center justify-content-center">
+        <span class="input-group-text text-center" id="basic-addon1">PetId: {{petId}}</span>
+        <span class="input-group-text" id="basic-addon1">Pet Name: {{petName}}</span>
+        <span class="input-group-text" id="basic-addon1">Price: {{petPrice}}</span>
+        <span class="input-group-text" id="basic-addon1">Order Status: {{status}}</span>
+    
+</div>
 
-<br>
-<a href="/main"> Back to main</a>
-<br>
-<br>
-{{#if error1}}
-   <h3> {{error1}} </h3>
-{{/if}}
+<p class="text-center"><a href="/showOrders">Go Back To All Orders</a></p>
 

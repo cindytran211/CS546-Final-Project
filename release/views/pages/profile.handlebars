@@ -1,52 +1,64 @@
-<h2>Profile page</h2>
-<p>UserId: {{userId}}</p>
+<h2 class="text-center">Update profile</h2>
+<p class="text-center">UserId: {{userId}}</p>
 
-<form action="/profile" method="POST" id="profile-form">
-    <label for="firstName">First name</label>
-    <input id="firstName" type="text" name="firstName" placeholder="firstName" value="{{firstName}}" >
+<div class="d-flex align-items-center justify-content-center">
+<form action="/profile" method="POST" id="profile-form" class="px-4 py-3 my-auto text-center">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">First Name: </span>
+        <input id="firstName" type="text" name="firstName" placeholder="firstName" value="{{firstName}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+    
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Last Name: </span>
+        <input id="lastName" type="text" name="lastName" placeholder="lastName" value="{{lastName}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
 
-    <label for="lastname">Last name</label>
-    <input id="lastName" type="text" name="lastName" placeholder="lastName" value="{{lastName}}" >
- 
-    <br><br>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Email: </span>
+        <input id="email" type="email" name="email" placeholder="email" value="{{email}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
 
-    <label for="email">Email</label>
-    <input id="email" type="email" name="email" placeholder="email" value="{{email}}" >
-
-    <label for="age">Age</label>
-    <input id="age" type="number" name="age" placeholder="age" min="0" value="{{age}}" >
-
-    <br><br>
-
-    <label for="streetAddress">Street</label>
-    <input id="streetAddress" type="text" name="streetAddress" placeholder="street" value="{{streetAddress}}" >
-
-    <br><br>
-
-    <label for="city">City</label>
-    <input id="city" type="text" name="city" placeholder="city" value="{{city}}" >
-
-    <label for="state">State</label>
-    <input id="state" type="text" name="state" placeholder="state" value="{{state}}" >
-
-    <label for="zipcode">Zipcode</label>
-    <input id="zipcode" type="zip" name="zipcode" placeholder="12345" pattern="[0-9]{5}"  value="{{zipcode}}" >
-
-    <br><br>
-
-    <label for="mobilePhone">Mobile Phone</label>
-    <input id="mobilePhone" type="tel" name="mobilePhone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="{{mobilePhone}}" >
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Age: </span>
+        <input id="age" type="number" name="age" placeholder="age" min="0" value="{{age}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
 
 
-    <br><br>
-    <br>
-    <button type="submit">Submit</button>
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Stret Address: </span>
+        <input id="streetAddress" type="text" name="streetAddress" placeholder="street" value="{{streetAddress}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">City: </span>
+        <input id="city" type="text" name="city" placeholder="city" value="{{city}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">State: </span>
+        <input id="state" type="text" name="state" placeholder="state" value="{{state}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Zipcode: </span>
+        <input id="zipcode" type="zip" name="zipcode" placeholder="12345" pattern="[0-9]{5}"  value="{{zipcode}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Mobile Phone: </span>
+        <input id="mobilePhone" type="tel" name="mobilePhone" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="{{mobilePhone}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button id="login" type="submit" name="submit" class="btn btn-primary">Add/Update</button>
+    </div>
 </form>
-<br>
-<a href="/main"> Back to main</a>
-<br>
+
+</div>
+
 <br>
 {{#if error1}}
-   <h3> {{error1}} </h3>
+   <h3 class="text-center"> {{error1}} </h3>
 {{/if}}
 

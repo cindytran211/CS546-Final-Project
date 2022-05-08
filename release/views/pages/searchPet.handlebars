@@ -1,62 +1,63 @@
-<h2>Search Pet page</h2>
-
-<form action="/searchPet" method="POST" id="searchPet-form">
-
-<br><br>
-
-	<label for="petType">Pet Type</label>
-    <input  list="petType" name="petType" value="{{petType}}"  >
-	<datalist id="petType" >
-		<option value="cat" >
-		<option value="dog" >
-	</datalist>
-	
-<br><br>
-
-    <label for="color">Pet color</label>
-    <input  list="color" name="color" value="{{color}}"  >
-	<datalist id="color" >
-		<option value="black" >
-        <option value="gray" ></option>
-        <option value="red" ></option>
-        <option value="golden" ></option>
-        <option value="brown" ></option>
-		<option value="white" >
-	</datalist>
-
-<br><br>
-
-    <label for="age">Max Pet Age in Years</label>
-    <input id="age" type="number" name="age" placeholder="age" value="{{age}}" >
-	
-<br><br>
-
-	<label for="price">Max Pet Price</label>
-    <input id="price" type="number" name="price" placeholder="price" value="{{price}}" >
-
-<br><br>
-
-	<label for="likes">Min Pet Likes</label>
-    <input id="likes" type="number" name="likes" placeholder="likes" value="{{likes}}" >	
-	
-<br><br>
-
-	<label for="status">Pet Status</label>
-    <input  list="status" name="status" value="{{status}}" >
-	<datalist id="status" >
-		<option value="available" >
-		<option value="sold" >
-	</datalist>
-
-<br><br>	
-	
-    <button type="submit">Submit</button>
-</form>
-<br>
-<a href="/main"> Back to main</a>
-<br>
-<br>
+<h2 hidden>Search Pet page</h2>
 {{#if error1}}
-   <h3> {{error1}} </h3>
+   <h3 class="text-center"> {{error1}} </h3>
 {{/if}}
+<div class="d-flex align-items-center justify-content-center">
+<form action="/searchPet" method="POST" id="searchPet-form">
+	<div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Pet Type: </span>
+        <input list="petType" name="petType" value="{{petType}}" class="form-control" aria-describedby="basic-addon1">
+    	<datalist id="petType" >
+			<option value="cat" >
+			<option value="dog" >
+		</datalist>
+	</div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Pet Color: </span>
+        <input list="color" name="color" value="{{color}}" class="form-control" aria-describedby="basic-addon1">
+		<datalist id="color" >
+			<option value="black" >
+			<option value="gray" ></option>
+			<option value="red" ></option>
+			<option value="golden" ></option>
+			<option value="brown" ></option>
+			<option value="white" >
+		</datalist>
+	</div>
+
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Max Pet Age: </span>
+        <input id="age" type="number" name="age" placeholder="age" value="{{age}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+	
+	<div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Max Pet Price: </span>
+        <input id="price" type="number" name="price" placeholder="price" value="{{price}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+
+	<div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Min Pet Likes: </span>
+        <input id="likes" type="number" name="likes" placeholder="likes" value="{{likes}}" class="form-control" aria-describedby="basic-addon1">
+    </div>	
+	
+
+	<div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Pet Status: </span>
+        <input list="status" name="status" value="{{status}}" class="form-control" aria-describedby="basic-addon1">
+		<datalist id="status" >
+			<option value="available" >
+			<option value="sold" >
+		</datalist>
+	</div>
+	
+	<div class="d-grid gap-2 col-6 mx-auto">
+        <button  type="submit" class="btn btn-primary">Submit</button>
+    </div>
+	
+	
+</form>
+</div>
+
+
 

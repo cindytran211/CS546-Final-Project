@@ -1,25 +1,52 @@
-<h2> Update Pet List page</h2>
+<h2 class="text-center"> Update Pet List page</h2>
 
 <ul class="petList"></ul>
 {{#each petSearchArray}}
-	<li>
 		{{#if img}}
-	   	<a href="./updatePet/{{this.petId}} ">Click for {{this.name}} age is {{this.age}} price {{this.price}}   
-		   <img src="/public/images/{{img}}" alt="no_image" style="width:42px;height:42px;"> </a>
+	   	{{!-- <a href="./selectaPet/{{this.petId}} ">Click for {{this.petName}} age is {{this.age}} price {{this.price}}   
+		   <img src="/public/images/{{img}}" alt="no image" style="width:42px;height:42px;"> </a> --}}
+		<div class="d-flex align-items-center justify-content-center">
+		   <div class="card" style="width: 18rem;">
+				<img src="/public/images/{{img}}" alt="no image">
+				<div class="card-body">
+					<h5 class="card-title">{{this.petName}}</h5>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">age: {{this.age}}</li>
+					<li class="list-group-item">price: {{this.price}}</li>
+				</ul>
+				<div class="card-body">
+					<a href="./updatePet/{{this.petId}}" class="card-link">Click for more info!</a>
+				</div>
+			</div>
+		</div>
+
 	   	{{else}}
-	    <a href="./updatePet/{{this.petId}} ">Click for {{this.name}} age is {{this.age}} price {{this.price}}   
-			<img src="/public/images/no_image.jpeg" style="width:42px;height:42px;"></a>
+	    {{!-- <a href="./selectaPet/{{this.petId}} ">Click for {{this.petName}} age is {{this.age}} price {{this.price}}   
+			<img src="/public/images/no_image.jpeg" alt="no_image" style="width:42px;height:42px;"></a> --}}
+		<div class="d-flex align-items-center justify-content-center">
+			<div class="card" style="width: 18rem;">
+				<img src="/public/images/no_image.jpeg" alt="no image">
+				<div class="card-body">
+					<h5 class="card-title">{{this.petName}}</h5>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">age is {{this.age}}</li>
+					<li class="list-group-item">price {{this.price}}</li>
+				</ul>
+				<div class="card-body">
+					<a href="./updatePet/{{this.petId}}" class="card-link">Click for more info!</a>
+				</div>
+			</div>
+		</div>
+
 	   	{{/if}}
-	</li>
+
 {{/each}}
 </ul>
 
-
-<br>
-<a href="/main"> Back to main</a>
-<br>
 <br>
 {{#if error1}}
-   <h3> {{error1}} </h3>
+   <h3 class="text-center"> {{error1}} </h3>
 {{/if}}
 

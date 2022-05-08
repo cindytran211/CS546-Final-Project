@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
         logit(req.method + ' ' + req.originalUrl + ' (Authenticated User)')
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
-        errorMsg = "Please login as user  ";
+        errorMsg = "You have to login to see this page!";
         res.status(200).render('../views/pages/login', { error1: errorMsg });
         return;
     }
@@ -87,7 +87,7 @@ router.post('/', async (req, res) => {
         logit(req.method + ' ' + req.originalUrl + ' (Authenticated User)')
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
-        errorMsg = "Please login as user  ";
+        errorMsg = "You have to login to see this page!";
         res.status(200).render('../views/pages/login', { error1: errorMsg });
         return;
     }

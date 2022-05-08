@@ -1,19 +1,28 @@
-<h2>Select Order List page</h2>
+<h2 class="text-center">Your Orders</h2>
+{{#if error1}}
+   <h3 class="text-center"> {{error1}} </h3>
+{{/if}}
 
-<ul class="orderList"></ul>
+{{!-- <ul class="orderList"></ul>
 {{#each orderArray}}
 	<li>
 		<a href="./selectOrder/{{this}} ">Click for Order {{this}}</a>
 	</li>
 {{/each}}
 </ul>
+ --}}
 
 
-<br>
-<a href="/main"> Back to main</a>
-<br>
-<br>
-{{#if error1}}
-   <h3> {{error1}} </h3>
-{{/if}}
+
+<div class="d-flex align-items-center justify-content-center">
+	<div class="card" style="width: 30rem;">
+		<ul class="orderList list-group list-group-flush">
+			<li class="list-group-item">Orders: {{#each orderArray}}
+													<ul><a href="./selectOrder/{{this}} ">Click for Order {{this}}</a></ul>
+												{{/each}}</li>
+		</ul>
+	</div>
+</div>
+
+
 

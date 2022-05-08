@@ -1,39 +1,41 @@
 <h2>Show Order page</h2>
 <p>UserId: {{userId}}</p>
 
-
-<h3> OrderId -  {{transId}}</h3>
-<h3> PetId -  {{petId}}</h3>
-<h3> Pet name - {{petName}}</h3>
-<h3> Pet price - {{petPrice}} </h3>
-<br>
-<h3>Order Status - {{status}}</h3>
-
-<form action="/selectOrder" method="POST" id="selectOrder-form">
-
-<label for="transId">Transaction ID</label>
-<input id="transId" type="text" name="transId"  readonly value="{{transId}}">
-
-<br><br>
-
-<label for="status">Order</label>
-    <input  list="status" name="status" value="{{status}}"  >
-	<datalist id="status" >
-		<option value="billed" >
-		<option value="delivered" >
-      <option value="refunded" ></option>  
-	</datalist>
-
-<br><br>
-
-   <button type="submit">Submit</button>
-</form>
-
-<br><br>
-<a href="/main"> Back to main</a>
-<br>
-<br>
+<h2 class="text-center">Orders</h2>
 {{#if error1}}
-   <h3> {{error1}} </h3>
+   <h3 class="text-center"> {{error1}} </h3>
 {{/if}}
+<p class="text-center">Here is your information on order {{transId}}</p>
 
+<div class="d-flex align-items-center justify-content-center">
+        <span class="input-group-text text-center" id="basic-addon1">PetId: {{petId}}</span>
+        <span class="input-group-text" id="basic-addon1">Pet Name: {{petName}}</span>
+        <span class="input-group-text" id="basic-addon1">Price: {{petPrice}}</span>
+        <span class="input-group-text" id="basic-addon1">Order Status: {{status}}</span>
+    
+</div>
+<div class="d-flex align-items-center justify-content-center">
+<form action="/selectOrder" method="POST" id="selectOrder-form">
+   <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Transaction ID: </span>
+        <input id="transId" type="text" name="transId"  readonly value="{{transId}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+
+   <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Order: </span>
+        <input list="status" name="status" value="{{status}}" class="form-control" aria-describedby="basic-addon1">
+            <datalist id="status" >
+               <option value="billed" >
+               <option value="delivered" >
+               <option value="refunded" ></option>  
+            </datalist>
+      </div>
+
+   <div class="d-grid gap-2 col-6 mx-auto">
+        <button type="submit" name="submit" class="btn btn-primary">Update</button>
+   </div>
+</form>
+</div>
+
+
+<p class="text-center"><a href="/showOrders">Go Back To All Orders</a></p>

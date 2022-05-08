@@ -1,60 +1,57 @@
-<h2>Add/Update Payment page</h2>
+<h2 class="text-center">Add/Update Payment page</h2>
 
- <p> Card Index {{idnum}}</p>
+ <p class="text-center"> Payment {{idnum}}</p>
 
-
+<div class="d-flex align-items-center justify-content-center">
 <form action="/addPayment" method="POST" id="addPayment-form">
-    <label for="cardName">Name on Card</label>
-    <input id="cardName" type="text" name="cardName" placeholder="John Public" pattern="[a-zA-Z0-9\s]+" value="{{cardName}}" >
-
-<br><br>
-
-    <label for="cardNumber">Card Number</label>
-    <input id="cardNumber" type="text" name="cardNumber" placeholder="1234-5678-1234-5678" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" value="{{cardNumber}}" >
-
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Name on Card: </span>
+        <input id="cardName" type="text" name="cardName" placeholder="John Public" pattern="[a-zA-Z0-9\s]+" value="{{cardName}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
+   
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Card Number: </span>
+        <input id="cardNumber" type="text" name="cardNumber" placeholder="1234-5678-1234-5678" pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}" value="{{cardNumber}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
 
     <input id="_id" type="hidden" name="_id" value="{{_id}}"  >
 
     <input id="idnum" type="hidden" name="idnum" value="{{idnum}}"  >
 
-<br><br>
-
-	<label for="cardType">Payment Type</label>
-    <input  list="cardType" name="cardType" value="{{cardType}}"  >
-	<datalist id="cardType" >
-		<option value="credit" >
-		<option value="debit" >
-	</datalist>
+	<div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Payment Type: </span>
+        <input list="cardType" name="cardType" value="{{cardType}}" class="form-control" aria-describedby="basic-addon1">
+        <datalist id="cardType" >
+            <option value="credit" >
+            <option value="debit" >
+        </datalist>
+    </div>
 	
-<br><br>
+	<div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Bank Name: </span>
+        <input id="cardBank" type="text" name="cardBank" placeholder="Bank Name" pattern="[a-zA-Z0-9\s]+" value="{{cardBank}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
 
-	<label for="cardBank">Creditcard Bank Name</label>
-    <input id="cardBank" type="text" name="cardBank" placeholder="Bank Name" pattern="[a-zA-Z0-9\s]+" value="{{cardBank}}">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Expiration Date: </span>
+        <input id="expDate" type="text" name="expDate" placeholder="12/22" pattern="([0][1-9]|1[0-2])/[0-9]{2}" value="{{expDate}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
 
-<br><br>
+	<div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Payment Description: </span>
+        <input id="description" type="text" name="description" placeholder="description" pattern="[a-zA-Z0-9\s]*" value="{{description}}" class="form-control" aria-describedby="basic-addon1">
+    </div>
 
-    <label for="expDate">Expiration Date</label>
-    <input id="expDate" type="text" name="expDate" placeholder="12/22" pattern="([0][1-9]|1[0-2])/[0-9]{2}" value="{{expDate}}" >
-
-<br><br>
-
-	<label for="description">Payment Description</label>
-    <input id="description" type="text" name="description" placeholder="description" pattern="[a-zA-Z0-9\s]*" value="{{description}}">
-	
-<br><br>
-
-    <button type="submit">Submit</button>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button  type="submit" class="btn btn-primary">Submit</button>
+    </div>
 </form>
-
+</div>
 <br>
    
-<a href="/addPayment/{{inc idnum}}">Next a Payment</a>
-<br>
-<br>
-<a href="/main"> Back to main</a>
-<br>
+<p class="text-center"><a href="/addPayment/{{inc idnum}}">Next Payment</a></p>
 <br>
 {{#if error1}}
-   <h3> {{error1}} </h3>
+   <h3 class="text-center"> {{error1}} </h3>
 {{/if}}
 

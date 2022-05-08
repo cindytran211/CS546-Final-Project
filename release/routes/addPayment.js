@@ -45,7 +45,7 @@ router.get('/:id', async (req, res) => {
         len = rtnArray.length;
         
     if ( len == 0 ) {
-        errorMsg = "update info for payment  "+idnum ;
+        errorMsg = " " ;
         res.status(200).render('../views/pages/addPayment', { error1: errorMsg, idnum: 0 } );
         return;
     }

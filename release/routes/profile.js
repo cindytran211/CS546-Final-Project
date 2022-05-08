@@ -19,7 +19,7 @@ function logit( str )
 router.get('/',  async (req, res) => {
     logDebug("user is set to "+req.session.user);
     const user = req.session.user;
-    let errorMsg = "Profile page"
+    let errorMsg = " "
     if (req.session.user) { // user is authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Authenticated User)')
        // res.redirect('/private'); 
@@ -46,7 +46,7 @@ router.get('/',  async (req, res) => {
 router.post('/', async (req, res) => {
     const user = req.session.user;
     let up = req.body;
-    let errorMsg = "Profile page"
+    let errorMsg = " "
 
     logDebug( " Got update "+ user + " "+ up.firstname + " " + up.lastname );
 
@@ -81,7 +81,7 @@ router.post('/', async (req, res) => {
         rtn = await users.setUser(set);
         // fetch info from db collection for users
         rtn = await users.getUser(user);
-        rtn.error1 =  "Update Profile Done";
+        rtn.error1 =  "Profile Updated!";
 
     } catch (e) {
         rtn = await users.getUser(user);

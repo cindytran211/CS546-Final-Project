@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
         res.redirect('/private'); 
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
-        errorMsg = "Please login ";
+        errorMsg = "  ";
         res.status(200).render('../views/pages/login', { error1: errorMsg });
        // return;
     }

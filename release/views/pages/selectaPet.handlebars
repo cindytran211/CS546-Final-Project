@@ -1,37 +1,24 @@
-<h2>Select a Pet page</h2>
+<h2 class ="text-center">{{petName}}</h2>
 
-
+{{!-- 
 {{#if img}}
     <img src="/public/images/{{img}}" alt="no_image" style="width:420px;height:420px;"> 
 {{else}}
     <img src="/public/images/no_image.jpeg" style="width:420px;height:420px;">
-{{/if}}
+{{/if}} --}}
 
-<br><br>
 
 <form action="/selectaPet" method="POST" id="selectPet-form">
-    <label for="petId">Pet Id</label>
-    <input id="petId" type="text" name="petId" placeholder="petId" readonly   value="{{petId}}"  >
-
-<br><br>
-
-    <label for="petName">Pet Name</label>
-    <input id="petName" type="text" name="petName" placeholder="petName"  readonly value="{{petName}}">
-	
-<br><br>
-
-	<label for="petType">Pet Type</label>
-    <input  list="petType" name="petType" value="{{petType}}"  readonly  >
-	<datalist id="petType" >
+    
+    <input hidden id="petId" type="text" name="petId" placeholder="petId" readonly   value="{{petId}}"  >
+    <input hidden id="petName" type="text" name="petName" placeholder="petName"  readonly value="{{petName}}">
+    <input  hidden list="petType" name="petType" value="{{petType}}"  readonly  >
+	<datalist hidden id="petType" >
 		<option value="cat" >
 		<option value="dog" >
 	</datalist>
-	
-<br><br>
-
-    <label for="color">Pet color</label>
-    <input  list="color" name="color" value="{{color}}"  readonly  >
-	<datalist id="color" >
+    <input  hidden list="color" name="color" value="{{color}}"  readonly  >
+	<datalist hidden id="color" >
 		<option value="black" >
         <option value="gray" ></option>
         <option value="red" ></option>
@@ -39,101 +26,84 @@
         <option value="brown" ></option>
 		<option value="white" >
 	</datalist>
-
-
-	
-<br><br>
-
-	<label for="breed">Pet Breed</label>
-    <input id="breed" type="text" name="breed" placeholder="breed" value="{{breed}}"  readonly >
-
-<br><br>
-
-    <label for="age">Pet Age in Years</label>
-    <input id="age" type="number" name="age" placeholder="age" value="{{age}}"  readonly >
-	
-<br><br>
-
-	<label for="description">Pet Description</label>
-    <input id="description" type="text" name="description" placeholder="description" value="{{description}}"   readonly   >
-	
-<br><br>
-
-    <label for="img">Pet Image File name </label>
-    <input id="img" type="text" name="img" placeholder="image file name jpeg" value="{{img}}" readonly  >
-<br><br>
-
-
- 
-
-	<label for="price">Pet Price</label>
-    <input id="price" type="number" name="price" placeholder="price" value="{{price}}"  readonly  >
-	
-<br><br>
-
-	<label for="status">Pet Status</label>
-    <input  list="status" name="status" value="{{status}}"  readonly >
-	<datalist id="status" >
+    <input hidden id="breed" type="text" name="breed" placeholder="breed" value="{{breed}}"  readonly >
+    <input hidden id="age" type="number" name="age" placeholder="age" value="{{age}}"  readonly >
+	<input hidden id="description" type="text" name="description" placeholder="description" value="{{description}}"   readonly   >
+    <input hidden id="img" type="text" name="img" placeholder="image file name jpeg" value="{{img}}" readonly  >
+    <input hidden id="price" type="number" name="price" placeholder="price" value="{{price}}"  readonly  >
+    <input  hidden list="status" name="status" value="{{status}}"  readonly >
+	<datalist hidden id="status" >
 		<option value="available" >
 		<option value="sold" >
 	</datalist>
-
-<br>
-
-{{#if isFav }}
-<h3> One of My Favorite </h3>
-{{/if }}
-
-<br>
-
-  <button type="toggleFavorite" name="toggleFavorite" value="toggle">Toggle Favorite</button>
-
-<br>
-
-{{#if available }}
-<br>
-    {{#each pay}}
-    <br>
-     <button type="Order{{@index}}" name="card" value="{{@index}}" >Order with Payment card  {{@index}} from bank  {{this}}</button>
-    <br>
-    {{/each}}
-
-{{ else }}
-  <h3> Not Available </h3>
-{{/if }}
-
-{{#if likes}}
-<p> Number of Likes: {{likes}} </p>
-{{/if}}
-<br>
- <button type="incLikes" name="incLikes" value="likes">Increment Likes</button>
-<br><br>
-
-{{#if comment}}
-<p>Comments</p>
-{{#each comment}}
-Comment{{@index}}: {{@this}} 
-<br>
-{{/each}}
-{{/if}}
-
-<br>
-
-<label for="commentInput">Input Comment</label>
-<input id="commentInput" type="text" name="commentInput" placeholder="comment"  >
-	
-<br><br>	
-
-  <button type="submitComment" name="submitComment" value="comment">Submit Comment</button>
+    <input hidden id="commentInput" type="text" name="commentInput" placeholder="comment"  >
 
 
-<br><br>
+
+
+
+    <div class="d-flex align-items-center justify-content-center">
+		   <div class="card" style="width: 18rem;">
+				<img src="/public/images/{{img}}" alt="no image">
+				<div class="card-body">
+					<h5 class="card-title">{{description}}</h5>
+				</div>
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item">Pet ID: {{petId}}</li>
+
+					<li class="list-group-item">Status: {{status}}</li>
+					<li class="list-group-item">{{#if available }}
+                                                    {{#each pay}}
+                                                        <br>
+                                                        <button type="Order{{@index}}" name="card" value="{{@index}}" >Order with Payment card  {{@index}} from bank  {{this}}</button>
+                                                        <br>
+                                                    {{/each}}
+                                                {{ else }}
+                                                    <h3> Not Available </h3>
+                                                {{/if }}</li>
+
+					<li class="list-group-item"> {{#if isFav }} <p> One of My Favorite </p>{{/if }}</li>
+
+					<li class="list-group-item">Age: {{age}}</li>
+					<li class="list-group-item">Price: {{price}}</li>
+                    <li class="list-group-item">Type: {{petType}}</li>
+                    <li class="list-group-item">Color: {{color}}</li>
+                    <li class="list-group-item">Breed: {{breed}}</li>
+				</ul>
+                <div class="card-body d-grid gap-2 col-6 mx-auto">
+					<button  type="toggleFavorite" class="btn btn-primary" name="toggleFavorite" value="toggle">Favorite me!</button>
+				</div>
+                <div class="card-body d-grid gap-2 col-6 mx-auto">
+					<button  type="incLikes" class="btn btn-primary" name="incLikes" value="likes">Like me!</button>
+				</div>
+                <ul class="list-group list-group-flush">
+					<li class="list-group-item">{{#if likes}}<p> Number of Likes: {{likes}} </p> {{/if}}</li>
+
+					<li class="list-group-item">{{#if comment}}
+                                                    <p>Comments</p>
+                                                {{#each comment}}
+                                                    <li class="list-group-item"><p> Comment{{@index}}: {{@this}} </p> </li>
+                                                {{/each}}
+                                                {{/if}}</li>
+				</ul>
+                
+                <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">Comment: </span>
+                    <input id="commentInput" type="text" name="commentInput" placeholder="comment" class="form-control" aria-describedby="basic-addon1">
+                </div>
+                <div class="card-body d-grid gap-2 col-6 mx-auto">
+					<button  type="submitComment" class="btn btn-primary" name="submitComment" value="comment">Comment!</button>
+				</div>
+			</div>
+        </div>
+        <br><br>
+
+
+
+
 
 </form>
-<br>
-<a href="/main"> Back to main</a>
-<br>
-<br>
+
 {{#if error1}}
    <h3> {{error1}} </h3>
 {{/if}}
