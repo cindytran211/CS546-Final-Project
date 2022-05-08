@@ -26,8 +26,9 @@ router.get('/',  async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "Please login ";
-        //res.status(200).render('../views/pages/login', { error1: errorMsg });
-       // return;
+
+        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        return;
     }
     
     let rtn = await users.getUser(user);

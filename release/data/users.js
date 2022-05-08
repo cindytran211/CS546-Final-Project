@@ -120,6 +120,10 @@ async function checkUser(userId, passWord) {
 async function getUser(userId) {
   let userMatch = {};
   let found = false;
+
+  if ( userId == null )
+    throw "Login: userId not defined";
+
   userId = userId.toLowerCase();
 
   logDebug("checkUser");
