@@ -397,10 +397,10 @@ async function delFavoritesUser(userId, petId) {
   if ( petId != 0 ) {
     for ( let i=0;i<rtn.favorites.length ; i++) {
       if ( rtn.favorites[i] != petId )
-        newlist.push(petId);
+        newlist.push(rtn.favorites[i]);
     }
     rtn.favorites = newlist;
-    let rtn2 = await setUser(rtn);
+    let rtn2 = await setFavUser(rtn);
   }
   
   return ( rtn.favorites );
