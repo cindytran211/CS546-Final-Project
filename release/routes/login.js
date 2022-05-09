@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "  ";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg, nologin: "true" });
        // return;
     }
 });
@@ -51,14 +51,14 @@ router.post('/login', async (req, res) => {
         } else {
             logDebug( "Pass failed " + req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
             errorMsg = "Login failed userId and/or password try again";
-            res.status(400).render('../views/pages/login', { error1: errorMsg });
+            res.status(400).render('../views/pages/login', { error1: errorMsg , nologin: "true"});
             return;
         }
     } catch (e) {
         logDebug( "Catch1 Error "+ req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "Login failed try again";
         //res.status(400).render('../views/pages/login', { error1 : errorMsg });
-        res.status(400).render('../views/pages/login', { error1: e });
+        res.status(400).render('../views/pages/login', { error1: e , nologin: "true"});
         return;
     }
 });
@@ -103,7 +103,7 @@ router.get('/signup', (req, res) => {
     } else { // user is not authenticated
         logit( req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         // error = "Please log in with valid credentials.";
-        res.status(200).render('../views/pages/signup', {});
+        res.status(200).render('../views/pages/signup', { nologin: "true"});
         return;
     }
 });
@@ -131,14 +131,14 @@ router.post('/signup', async (req, res) => {
         } else {
             logDebug( "Pass failed " + req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
             errorMsg = "Internal Server Error";
-            res.status(500).render('../views/pages/signup', { error1: errorMsg });
+            res.status(500).render('../views/pages/signup', { error1: errorMsg , nologin: "true"});
             return;
         }
     } catch (e) {
         logDebug( "Catch2 Error "+ req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "Login failed try again";
         //res.status(400).render('../views/pages/signup', { error1 : errorMsg });
-        res.status(400).render('../views/pages/signup', { error1 : e });
+        res.status(400).render('../views/pages/signup', { error1 : e,  nologin: "true" });
         return;
     }
 
@@ -157,7 +157,7 @@ router.get('/private', (req, res) => {
     } else {
         logit( req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "Login failed try again";
-        res.status(403).render('../views/pages/login', { error1 : errorMsg });
+        res.status(403).render('../views/pages/login', { error1 : errorMsg,  nologin: "true" });
         return;
     }
 });
@@ -165,7 +165,7 @@ router.get('/private', (req, res) => {
 router.get('/logout', (req, res) => {
     req.session.destroy();
     logit(req.method + ' ' + req.originalUrl + ' (Authenticated User)')
-    res.render('../views/pages/logout',  {});
+    res.render('../views/pages/logout',  { nologin: "true"});
     return;
 });
 

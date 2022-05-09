@@ -26,6 +26,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
+{{#if nologin}}
+{{else }}                
                 <a class="nav-item nav-link active" href="/private">Home <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" href="/profile">Edit Profile</a>
                 <a class="nav-item nav-link" href="/addPayment/0">Payment</a>
@@ -50,6 +52,7 @@
 
                 </div>
                 </div>
+{{/if}}                
             </div>
         </div>
     </nav>
