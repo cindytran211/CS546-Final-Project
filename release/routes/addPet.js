@@ -22,12 +22,14 @@ router.get('/', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "You have to login to see this page!";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg  , nologin: "true"  });
         return;
     }
 
     let rtn = await pets.getPet(petId);
     rtn.error1 = errorMsg;
+    
+    rtn.admin = "true";
     res.status(200).render('../views/pages/addPet', rtn);
 
 });
@@ -46,7 +48,7 @@ router.post('/', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "You have to login to see this page!";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg , nologin: "true"  });
         return;
     }
 
@@ -68,6 +70,7 @@ router.post('/', async (req, res) => {
     {
         logDebug(e); 
         rb.error1 = e;
+        rb.admin = "true";
         res.status(200).render('../views/pages/addPet', rb );
         return;
     }
@@ -76,6 +79,7 @@ router.post('/', async (req, res) => {
     rtn.error1 = "New pet created";
     
     logDebug(" pet created is true " + petId + " "+ rtn);
+    rtn.admin = "true";
     res.status(200).render('../views/pages/addPet', rtn);
     return;
     

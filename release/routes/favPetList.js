@@ -50,6 +50,7 @@ router.get('/', async (req, res) => {
     }
 
     if ( (req.session.user) && (req.session.user == "admin") ) { // user is authenticated
+        rtn.admin = "true";
         res.status(200).render('../views/pages/updatePetList', rtn);
     } else {
         res.status(200).render('../views/pages/selectPetList', rtn);

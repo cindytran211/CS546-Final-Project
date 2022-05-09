@@ -88,7 +88,7 @@ router.post('/', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "You have to login to see this page!";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg , nologin: "true" });
         return;
     }
 
@@ -108,10 +108,20 @@ router.post('/', async (req, res) => {
 
     if ( submitComment == "comment") {
 
-        logDebug ( " Submit comment " + rb.commentInput);
+        logDebug ( " Submit comment " );
 
         if ( rb.commentInput != "" ) {
-            let comment = userId+": "+rb.commentInput;
+            let commentInput = ""
+            if ( Array.isArray( rb.commentInput ) ) {
+                for ( let i=0; i < rb.commentInput.length ; i ++)
+                    commentInput = commentInput + rb.commentInput[i];
+            } else {
+                commentInput = rb.commentInput;
+            }
+
+            logDebug ( " Submit comment " + commentInput);
+
+            let comment = userId+": "+ commentInput;
             await pets.addCommentPet(petId,comment);
         }
         res.redirect("/selectaPet/"+petId); 

@@ -28,7 +28,7 @@ router.get('/:id', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "You have to login to see this page!";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg, nologin: "true"  });
         return;
     }
 
@@ -49,6 +49,7 @@ router.get('/:id', async (req, res) => {
     rtn.status = status;
 
     if ( userId == "admin") {
+        rtn.admin = "true";
         res.status(200).render('../views/pages/updateOrders', rtn);
     } else {
         res.status(200).render('../views/pages/showOrders', rtn);
@@ -69,7 +70,7 @@ router.post('/', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "You have to login to see this page!";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg , nologin: "true"  });
         return;
     }
 
@@ -94,6 +95,7 @@ router.post('/', async (req, res) => {
     } catch (e)
     {
         rtn.error1 = "Bad Order Status";
+        rtn.admin = "true";
         res.status(200).render('../views/pages/updateOrders', rtn);
         return;
     } 
@@ -103,7 +105,7 @@ router.post('/', async (req, res) => {
 
     rtn2.petName = pet.petName;
     rtn2.petPrice = pet.price;
-
+    rtn2.admin = "true";
     res.status(200).render('../views/pages/updateOrders', rtn2);
 
 

@@ -151,7 +151,7 @@ router.get('/private', (req, res) => {
     if ( user ) {
         logit( req.method + ' ' + req.originalUrl + ' (Authenticated User)')
         if ( user == "admin")
-            res.status(200).render('../views/pages/authAdmin', { userId: user });
+            res.status(200).render('../views/pages/authAdmin', { userId: user, admin: "true" });
         else
             res.status(200).render('../views/pages/authUser', { userId: user });
     } else {

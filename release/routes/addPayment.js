@@ -32,7 +32,7 @@ router.get('/:id', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "Please login ";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg , nologin: "true"  });
         return;
     }
 

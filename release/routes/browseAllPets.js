@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "You have to login to see this page!";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg, nologin: "true"   });
         return;
     }
 
@@ -39,6 +39,7 @@ router.get('/', async (req, res) => {
     logDebug(" pet select is true  "+ rtn);
 
     if ( (req.session.user) && (req.session.user == "admin") ) { // user is authenticated
+        rtn.admin = "true";
         res.status(200).render('../views/pages/updatePetList', rtn);
     } else {
         res.status(200).render('../views/pages/selectPetList', rtn);

@@ -31,6 +31,8 @@ router.get('/', async (req, res) => {
    // let rtn = await pets.searchPets(rb);
    
     rtn.error1 = errorMsg;
+    if ( req.session.user == "admin" )
+        rtn.admin = "true";
     res.status(200).render('../views/pages/searchPet', rtn);
 
 });
@@ -49,7 +51,7 @@ router.post('/', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "You have to login to see this page!";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg, nologin: "true"   });
         return;
     }
 
@@ -66,6 +68,7 @@ router.post('/', async (req, res) => {
     logDebug(" pet select is true  "+ rtn);
 
     if ( (req.session.user) && (req.session.user == "admin") ) { // user is authenticated
+        rtn.admin = "true";
         res.status(200).render('../views/pages/updatePetList', rtn);
     } else {
         res.status(200).render('../views/pages/selectPetList', rtn);

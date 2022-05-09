@@ -26,7 +26,7 @@ router.get('/', async (req, res) => {
     } else { // user is not authenticated
         logit(req.method + ' ' + req.originalUrl + ' (Non-Authenticated User)')
         errorMsg = "You have to login to see this page!";
-        res.status(200).render('../views/pages/login', { error1: errorMsg });
+        res.status(200).render('../views/pages/login', { error1: errorMsg, nologin: "true"   });
         return;
     }
     
@@ -41,6 +41,9 @@ router.get('/', async (req, res) => {
     rtn4.orderArray = rtn3; 
     rtn4.error1 = "Order List";
 
+    if (req.session.user == "admin") {
+        rtn4.admin = "true";
+    }
     res.status(200).render('../views/pages/selectOrderList', rtn4);
     return;
     
