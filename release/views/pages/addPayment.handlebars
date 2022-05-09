@@ -1,5 +1,9 @@
 <h2 class="text-center">Add/Update Payment page</h2>
 
+{{#if error1}}
+   <h3 class="text-center"> {{error1}} </h3>
+{{/if}}
+
  <p class="text-center"> Payment {{idnum}}</p>
 
 <div class="d-flex align-items-center justify-content-center">
@@ -51,7 +55,6 @@
    
 <p class="text-center"><a href="/addPayment/{{inc idnum}}">Next Payment</a></p>
 <br>
-{{#if error1}}
-   <h3 class="text-center"> {{error1}} </h3>
-{{/if}}
 
+
+<br><br><br><br><br><br>
